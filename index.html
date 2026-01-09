@@ -15,9 +15,7 @@
     font-family: 'JetBrains Mono', monospace;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     color: #e6e6e6;
@@ -37,10 +35,10 @@ body {
     max-width: 1000px;
     margin: 80px auto;
     padding: 40px;
-    background: rgba(0,0,0,0.75);
-    border-radius: 16px;
-    border: 1px solid rgba(0,255,170,0.3);
-    box-shadow: 0 0 40px rgba(0,255,170,0.2);
+    background: rgba(0,0,0,0.78);
+    border-radius: 18px;
+    border: 1px solid rgba(0,255,170,0.35);
+    box-shadow: 0 0 50px rgba(0,255,170,0.25);
     text-align: center;
 }
 
@@ -52,6 +50,7 @@ body {
 .subtitle {
     color: #9ef5d5;
     margin: 15px 0 25px;
+    letter-spacing: 1px;
 }
 
 .header p {
@@ -60,58 +59,63 @@ body {
 }
 
 /* LINKTREE */
-.linktree {
-    margin-top: 20px;
-}
+.linktree { margin-top: 25px; }
 
 .linktree a {
     color: #00ffaa;
     text-decoration: none;
     font-size: 0.95rem;
-    border-bottom: 1px solid rgba(0,255,170,0.4);
+    border-bottom: 1px dashed rgba(0,255,170,0.5);
 }
 
-.linktree a:hover {
-    color: #ffffff;
-}
-
-/* NEWS GRID */
+/* NEWS */
 .news-section {
-    max-width: 1100px;
-    margin: 0 auto 80px;
+    max-width: 1150px;
+    margin: 0 auto 90px;
     padding: 0 20px;
 }
 
 .news-title {
     text-align: center;
-    font-size: 1.6rem;
+    font-size: 1.7rem;
     color: #00ffaa;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .news-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
+    gap: 28px;
 }
 
 .news-tile {
     background: rgba(0,0,0,0.65);
     border: 1px solid rgba(0,255,170,0.3);
-    border-radius: 14px;
+    border-radius: 16px;
     padding: 22px;
     cursor: pointer;
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    transition: 0.3s ease;
+    position: relative;
 }
 
-.news-tile:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 35px rgba(0,255,170,0.4);
+.news-tile::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    box-shadow: 0 0 30px rgba(0,255,170,0.15);
+    opacity: 0;
+    transition: 0.3s;
 }
+
+.news-tile:hover::after { opacity: 1; }
+
+.news-tile:hover { transform: translateY(-6px); }
 
 .news-tile h3 {
     color: #00ffaa;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
 }
 
 .news-tile span {
@@ -121,20 +125,31 @@ body {
 
 .news-tile p {
     margin-top: 12px;
-    font-size: 0.9rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.7rem;
+    padding: 4px 8px;
+    border-radius: 8px;
+    background: rgba(0,255,170,0.15);
+    color: #00ffaa;
 }
 
 /* DETAILS */
 .details {
     max-width: 1000px;
     margin: 0 auto 100px;
-    padding: 40px;
-    background: rgba(0,0,0,0.75);
-    border-radius: 16px;
-    border: 1px solid rgba(0,255,170,0.3);
-    box-shadow: 0 0 50px rgba(0,255,170,0.2);
+    padding: 45px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 18px;
+    border: 1px solid rgba(0,255,170,0.35);
+    box-shadow: 0 0 60px rgba(0,255,170,0.25);
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(40px);
     transition: 0.4s ease;
 }
 
@@ -143,9 +158,7 @@ body {
     transform: translateY(0);
 }
 
-.details h2 {
-    color: #00ffaa;
-}
+.details h2 { color: #00ffaa; }
 
 .details span {
     font-size: 0.8rem;
@@ -153,8 +166,8 @@ body {
 }
 
 .details p {
-    margin-top: 20px;
-    line-height: 1.8;
+    margin-top: 22px;
+    line-height: 1.9;
 }
 
 /* FOOTER */
@@ -165,9 +178,7 @@ footer {
     margin-bottom: 30px;
 }
 
-footer span {
-    color: #00ffaa;
-}
+footer span { color: #00ffaa; }
 </style>
 </head>
 
@@ -177,39 +188,46 @@ footer span {
 
 <div class="header">
     <h1>hackerarchive.github</h1>
-    <div class="subtitle">Mods • Politics • Hacking • Digital Archive</div>
+    <div class="subtitle">MODS • POLITICS • HACKING • DIGITAL ARCHIVE</div>
     <p>
-        Independent archive documenting game mods, political events,
-        cybersecurity incidents and underground digital culture.
+        Independent digital archive documenting real-world data breaches,
+        cyber incidents, underground communities and exposed systems.
     </p>
-
     <div class="linktree">
-        <a href="https://linktr.ee/hackarchives" target="_blank">
-            linktr.ee/hackarchives
-        </a>
+        <a href="https://linktr.ee/hackarchives" target="_blank">linktr.ee/hackarchives</a>
     </div>
 </div>
 
 <section class="news-section">
-    <div class="news-title">Latest Archived News</div>
+    <div class="news-title">Latest Archived Incidents</div>
 
     <div class="news-grid">
         <div class="news-tile" onclick="openNews(0)">
-            <h3>Massive Game Mod Leak Appears Online</h3>
-            <span>Game Mods • 2026</span>
-            <p>Unreleased modifications surfaced on underground forums.</p>
+            <h3>Healthcare Database Leak Exposes 700k Records</h3>
+            <span>Cybersecurity • Data Leak • 2026</span>
+            <p>Misconfigured servers exposed sensitive patient data.</p>
+            <div class="badge">REAL INCIDENT</div>
         </div>
 
         <div class="news-tile" onclick="openNews(1)">
-            <h3>Political Campaign Databases Exposed</h3>
-            <span>Politics • Data</span>
-            <p>Millions of voter profiles indexed after misconfiguration.</p>
+            <h3>Infostealer Malware Hits Global Companies</h3>
+            <span>Hacking • Malware</span>
+            <p>Credential theft campaign exploiting lack of MFA.</p>
+            <div class="badge">ACTIVE THREAT</div>
         </div>
 
         <div class="news-tile" onclick="openNews(2)">
-            <h3>New Exploit Targets Legacy Systems</h3>
-            <span>Hacking • Cybersecurity</span>
-            <p>Zero-day vulnerability actively exploited in the wild.</p>
+            <h3>Apple Patches Two Actively Exploited Zero-Days</h3>
+            <span>Cybersecurity • Zero-Day</span>
+            <p>Advanced attacks prompted emergency security updates.</p>
+            <div class="badge">ZERO-DAY</div>
+        </div>
+
+        <div class="news-tile" onclick="openNews(3)">
+            <h3>Ransomware Attack Leaks 500k Medical Files</h3>
+            <span>Ransomware • Healthcare</span>
+            <p>Attackers published stolen patient records online.</p>
+            <div class="badge">DATA BREACH</div>
         </div>
     </div>
 </section>
@@ -225,7 +243,7 @@ footer span {
 </footer>
 
 <script>
-/* MATRIX EFFECT */
+/* MATRIX */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
@@ -257,7 +275,6 @@ function drawMatrix() {
         drops[i]++;
     }
 }
-
 setInterval(drawMatrix, 50);
 
 window.addEventListener("resize", () => {
@@ -269,22 +286,28 @@ window.addEventListener("resize", () => {
 /* NEWS DATA */
 const newsArchive = [
     {
-        title: "Massive Game Mod Leak Appears Online",
-        meta: "Game Mods • 2026",
+        title: "Healthcare Database Leak Exposes 700k Records",
+        meta: "Cybersecurity • Data Leak • 2026",
         content:
-            "A large archive of unreleased game modifications surfaced on underground forums, including experimental mechanics and internal developer tools."
+            "A US healthcare department confirmed that improperly configured servers exposed personal and medical data of over 700,000 individuals, increasing risks of identity theft and phishing."
     },
     {
-        title: "Political Campaign Databases Exposed",
-        meta: "Politics • Data Exposure",
+        title: "Infostealer Malware Hits Global Companies",
+        meta: "Hacking • Malware",
         content:
-            "Security researchers confirmed that misconfigured servers exposed sensitive political campaign databases to the public internet."
+            "A large-scale infostealer campaign targeted dozens of companies worldwide, harvesting credentials due to weak authentication and missing MFA protections."
     },
     {
-        title: "New Exploit Targets Legacy Systems",
-        meta: "Hacking • Cybersecurity",
+        title: "Apple Patches Two Actively Exploited Zero-Days",
+        meta: "Cybersecurity • Zero-Day",
         content:
-            "A newly discovered exploit is actively targeting outdated enterprise systems still used in production environments."
+            "Apple released emergency security updates after discovering two zero-day vulnerabilities actively exploited in highly targeted attacks."
+    },
+    {
+        title: "Ransomware Attack Leaks 500k Medical Files",
+        meta: "Ransomware • Healthcare",
+        content:
+            "A ransomware group published sensitive medical records of nearly half a million patients after failed extortion negotiations."
     }
 ];
 
