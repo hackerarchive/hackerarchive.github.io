@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>hackerarchive.github</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, #0a0a0a, #071717);
+    color: #e6e6e6;
+}
+
+/* HEADER */
+.header {
+    max-width: 1000px;
+    margin: 80px auto;
+    padding: 40px;
+    background: rgba(0,0,0,0.65);
+    border-radius: 16px;
+    border: 1px solid rgba(0,255,170,0.25);
+    box-shadow: 0 0 40px rgba(0,255,170,0.15);
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 3rem;
+    color: #00ffaa;
+}
+
+.subtitle {
+    color: #9ef5d5;
+    margin: 15px 0 30px;
+}
+
+.header p {
+    line-height: 1.7;
+    color: #cfcfcf;
+}
+
+/* NEWS GRID */
+.news-section {
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    padding: 0 20px;
+}
+
+.news-title {
+    text-align: center;
+    font-size: 1.6rem;
+    color: #00ffaa;
+    margin-bottom: 30px;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.news-tile {
+    background: rgba(0,0,0,0.6);
+    border: 1px solid rgba(0,255,170,0.25);
+    border-radius: 14px;
+    padding: 22px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.news-tile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent, rgba(0,255,170,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.news-tile:hover::before {
+    opacity: 1;
+}
+
+.news-tile:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 0 30px rgba(0,255,170,0.35);
+}
+
+.news-tile h3 {
+    color: #00ffaa;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
+}
+
+.news-tile span {
+    font-size: 0.75rem;
+    color: #7dddc1;
+}
+
+.news-tile p {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    color: #d0d0d0;
+}
+
+/* DETAILS SECTION */
+.details {
+    max-width: 1000px;
+    margin: 0 auto 100px;
+    padding: 40px;
+    background: rgba(0,0,0,0.7);
+    border-radius: 16px;
+    border: 1px solid rgba(0,255,170,0.25);
+    box-shadow: 0 0 50px rgba(0,255,170,0.15);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.details.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.details h2 {
+    color: #00ffaa;
+    margin-bottom: 15px;
+}
+
+.details span {
+    font-size: 0.8rem;
+    color: #7dddc1;
+}
+
+.details p {
+    margin-top: 20px;
+    line-height: 1.8;
+    color: #d6d6d6;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    color: #666;
+    font-size: 0.85rem;
+    margin-bottom: 30px;
+}
+
+footer span {
+    color: #00ffaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1>hackerarchive.github</h1>
+    <div class="subtitle">Mods • Politics • Hacking • Digital News Archive</div>
+    <p>
+        Independent archive documenting game mods, political events,
+        cybersecurity incidents and underground digital culture.
+    </p>
+</div>
+
+<section class="news-section">
+    <div class="news-title">Latest Archived News</div>
+
+    <div class="news-grid">
+        <div class="news-tile" onclick="openNews(0)">
+            <h3>Massive Game Mod Leak Appears Online</h3>
+            <span>Game Mods • Community</span>
+            <p>Unreleased modifications for popular titles were leaked across private forums.</p>
+        </div>
+
+        <div class="news-tile" onclick="openNews(1)">
+            <h3>Political Campaign Databases Exposed</h3>
+            <span>Politics • Data</span>
+            <p>Millions of voter profiles were indexed after a server misconfiguration.</p>
+        </div>
+
+        <div class="news-tile" onclick="openNews(2)">
+            <h3>New Exploit Targets Legacy Systems</h3>
+            <span>Hacking • Cybersecurity</span>
+            <p>A zero-day vulnerability affects outdated enterprise infrastructure.</p>
+        </div>
+
+        <div class="news-tile" onclick="openNews(3)">
+            <h3>Archiving Mods Before Takedowns</h3>
+            <span>Archive • Preservation</span>
+            <p>Communities rush to preserve mods removed due to legal pressure.</p>
+        </div>
+    </div>
+</section>
+
+<section id="details" class="details">
+    <h2 id="detailsTitle">Select a news tile</h2>
+    <span id="detailsMeta"></span>
+    <p id="detailsContent"></p>
+</section>
+
+<footer>
+    © 2026 <span>hackerarchive.github</span> • Independent archive
+</footer>
+
+<script>
+const newsData = [
+    {
+        title: "Massive Game Mod Leak Appears Online",
+        meta: "Game Mods • Community • 2026",
+        content: "A large archive of unreleased and private game modifications has surfaced on underground forums. The leak includes experimental mechanics, unfinished assets, and developer-only tools. Modding communities are now racing to preserve and verify the authenticity of the files before potential takedowns."
+    },
+    {
+        title: "Political Campaign Databases Exposed",
+        meta: "Politics • Data Exposure",
+        content: "Security researchers confirmed that multiple political campaign databases were publicly accessible due to improper server configuration. The exposed data reportedly contained voter profiling information, internal strategy documents, and analytics data collected during election cycles."
+    },
+    {
+        title: "New Exploit Targets Legacy Systems",
+        meta: "Hacking • Cybersecurity",
+        content: "A newly discovered exploit is actively targeting legacy enterprise systems still running outdated software. Attackers are using the vulnerability for initial access, privilege escalation, and lateral movement inside corporate networks."
+    },
+    {
+        title: "Archiving Mods Before Takedowns",
+        meta: "Archive • Digital Preservation",
+        content: "As legal pressure increases on mod hosting platforms, communities have begun mass-archiving projects at risk of removal. The goal is to preserve cultural and technical history before it disappears from the public internet."
+    }
+];
+
+function openNews(index) {
+    const details = document.getElementById("details");
+    document.getElementById("detailsTitle").textContent = newsData[index].title;
+    document.getElementById("detailsMeta").textContent = newsData[index].meta;
+    document.getElementById("detailsContent").textContent = newsData[index].content;
+
+    details.classList.add("active");
+    details.scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+</body>
+</html>
