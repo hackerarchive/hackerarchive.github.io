@@ -1,40 +1,30 @@
-
-
-````md
 # hackerarchive.github
 
-Independent digital archive focused on:
-- Game mods
-- Hacking & cybersecurity
-- Politics & digital leaks
-- Underground internet culture
+Independent digital archive focused on game mods, hacking,
+politics, cybersecurity and underground digital culture.
 
-Live links:
-- https://hackerarchive.github
-- https://linktr.ee/hackarchives
+Linktree:
+https://linktr.ee/hackarchives
 
 ---
 
-## ⚙️ GitHub Pages configuration (YAML)
+## 📜 Core archive script (Matrix + News)
 
-This project uses GitHub Pages with a minimal configuration.
+Below is a **single unified script** used by the project.
+It handles:
 
-```yml
-# _config.yml
-title: hackerarchive.github
-description: Digital archive of mods, hacking and political news
-theme: null
-markdown: kramdown
-````
+- Matrix-style animated background
+- News archive data
+- Click → scroll → display article details
 
----
-
-## 🧩 Matrix background script (documented)
-
-The Matrix background is implemented using HTML Canvas.
-Below is the **core logic**, documented here for archival purposes.
+This script is documented here for archival and reference purposes.
 
 ```js
+/* =========================
+   HACKERARCHIVE CORE SCRIPT
+   ========================= */
+
+/* MATRIX BACKGROUND */
 const canvas = document.getElementById("matrix");
 const ctx = canvas.getContext("2d");
 
@@ -43,102 +33,69 @@ canvas.height = window.innerHeight;
 
 const chars = "01ABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&@";
 const fontSize = 14;
-const columns = canvas.width / fontSize;
-const drops = Array.from({ length: columns }).fill(0);
+const columns = Math.floor(canvas.width / fontSize);
+const drops = Array(columns).fill(1);
 
 function drawMatrix() {
-  ctx.fillStyle = "rgba(0,0,0,0.08)";
+  ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.fillStyle = "#00ffaa";
   ctx.font = fontSize + "px monospace";
 
-  drops.forEach((y, i) => {
-    const text = chars[Math.floor(Math.random() * chars.length)];
-    ctx.fillText(text, i * fontSize, y * fontSize);
-    drops[i] = y * fontSize > canvas.height && Math.random() > 0.975 ? 0 : y + 1;
-  });
+  for (let i = 0; i < drops.length; i++) {
+    const char = chars[Math.floor(Math.random() * chars.length)];
+    ctx.fillText(char, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+      drops[i] = 0;
+    }
+    drops[i]++;
+  }
 }
+
 setInterval(drawMatrix, 50);
-```
 
----
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
 
-## 📰 News archive logic
-
-News entries are handled as JavaScript objects.
-Clicking a tile loads the full article and scrolls to the details section.
-
-```js
-const newsData = [
+/* NEWS ARCHIVE */
+const newsArchive = [
   {
     title: "Massive Game Mod Leak Appears Online",
-    category: "Game Mods",
-    content: "Unreleased modifications surfaced on underground forums..."
+    meta: "Game Mods • 2026",
+    content:
+      "A large archive of unreleased game modifications surfaced on underground forums, including experimental mechanics and internal developer tools."
   },
   {
     title: "Political Campaign Databases Exposed",
-    category: "Politics",
-    content: "Misconfigured servers exposed voter profiling data..."
+    meta: "Politics • Data Exposure",
+    content:
+      "Security researchers confirmed that misconfigured servers exposed sensitive political campaign databases to the public internet."
+  },
+  {
+    title: "New Exploit Targets Legacy Systems",
+    meta: "Hacking • Cybersecurity",
+    content:
+      "A newly discovered exploit is actively targeting outdated enterprise systems still in production environments."
   }
 ];
 
+/* NEWS HANDLER */
 function openNews(index) {
-  document.getElementById("detailsTitle").innerText = newsData[index].title;
-  document.getElementById("detailsContent").innerText = newsData[index].content;
-  document.getElementById("details").scrollIntoView({ behavior: "smooth" });
+  const details = document.getElementById("details");
+
+  document.getElementById("detailsTitle").textContent =
+    newsArchive[index].title;
+
+  document.getElementById("detailsMeta").textContent =
+    newsArchive[index].meta;
+
+  document.getElementById("detailsContent").textContent =
+    newsArchive[index].content;
+
+  details.classList.add("active");
+  details.scrollIntoView({ behavior: "smooth" });
 }
-```
-
----
-
-## 🚀 GitHub Actions (optional)
-
-If automation is required, example workflow:
-
-```yml
-# .github/workflows/pages.yml
-name: Deploy Pages
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy
-        uses: actions/configure-pages@v3
-```
-
----
-
-## ⚠️ Disclaimer
-
-This repository is an **archive and documentation project**.
-No illegal content is hosted directly.
-
----
-
-© 2026 hackerarchive.github
-
-```
-
----
-
-## 🧠 Co to daje
-- ✅ masz **YAML**
-- ✅ masz **skrypt w README**
-- ✅ GitHub to łyka bez problemu
-- ✅ wygląda „technicznie / archiwalnie”
-- ✅ pasuje pod **Pages / Actions / Jekyll**
-
-Jeśli chcesz, mogę:
-- dostosować pod **konkretny validator**
-- zrobić README **pod GitHub profile**
-- albo **pod szkołę / projekt / regulamin**
-
-Napisz **do czego dokładnie wymagają tego `.yml`**, a dopnę idealnie 🔥
-```
