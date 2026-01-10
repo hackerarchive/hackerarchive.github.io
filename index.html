@@ -5,55 +5,48 @@
 <title>hackerarchive.github</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'JetBrains Mono',monospace}
-body{background:black;color:#e6e6e6}
+html{scroll-behavior:smooth}
+body{background:black;color:#e6e6e6;overflow-x:hidden}
 #matrix{position:fixed;inset:0;z-index:-1}
 
-.header{max-width:1200px;margin:40px auto;padding:40px;background:rgba(0,0,0,.85);border:1px solid rgba(0,255,170,.35);border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
+.header{max-width:1200px;margin:40px auto;padding:40px;background:rgba(0,0,0,.85);
+border:1px solid rgba(0,255,170,.35);border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
 h1{color:#00ffaa;font-size:3rem}
-.subtitle{color:#9ef5d5;margin:15px 0}
+.subtitle{color:#9ef5d5;margin:12px 0 6px}
 
-.nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:25px}
-.nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);padding:8px 14px;border-radius:10px;cursor:pointer}
+.nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:20px}
+.nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
+padding:8px 14px;border-radius:10px;cursor:pointer}
 .nav button.active{background:rgba(0,255,170,.25)}
-
-.searchbar{max-width:700px;margin:30px auto;display:flex;gap:10px}
-.searchbar input,.searchbar select{flex:1;background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);padding:8px;border-radius:8px}
 
 .section{display:none;max-width:1200px;margin:30px auto;padding:0 20px}
 .section.active{display:block}
 
-.card{background:rgba(0,0,0,.7);border:1px solid rgba(0,255,170,.3);border-radius:16px;padding:22px;margin-bottom:20px}
+.card{background:rgba(0,0,0,.72);border:1px solid rgba(0,255,170,.3);
+border-radius:16px;padding:22px;margin-bottom:20px}
 .card h3{color:#00ffaa}
-.meta{font-size:.75rem;color:#7dddc1;margin-top:5px}
+.meta{font-size:.75rem;color:#7dddc1;margin-top:6px}
 .tags{font-size:.7rem;color:#00ffaa;margin-top:6px}
 
 .accordion h3{cursor:pointer}
-.content{display:none;margin-top:15px;line-height:1.9}
+.content{display:none;margin-top:14px;line-height:1.9}
 
-.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none;box-shadow:0 0 15px rgba(0,255,170,.3)}
-
-.calc input,.calc select{
-width:100%;margin:6px 0;padding:8px;
-background:black;color:#00ffaa;
-border:1px solid rgba(0,255,170,.4);border-radius:8px
-}
-.calc button{
-margin-top:10px;padding:8px 14px;
-background:black;color:#00ffaa;
-border:1px solid rgba(0,255,170,.6);
-border-radius:8px;cursor:pointer
-}
+.download{display:inline-block;margin-top:12px;padding:10px 18px;
+border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;
+text-decoration:none;box-shadow:0 0 15px rgba(0,255,170,.3)}
 
 #terminal{
 background:black;border:1px solid rgba(0,255,170,.4);
-border-radius:14px;padding:20px;
-min-height:420px;white-space:pre-wrap;color:#00ffaa
+border-radius:14px;padding:20px;min-height:420px;
+white-space:pre-wrap;color:#00ffaa
 }
 
 footer{text-align:center;color:#666;margin:40px}
+small{color:#8fdac3}
+hr{border:0;border-top:1px solid rgba(0,255,170,.25);margin:16px 0}
+input,button,select,iframe{outline:none}
 </style>
 </head>
 
@@ -63,59 +56,177 @@ footer{text-align:center;color:#666;margin:40px}
 <div class="header">
 <h1>hackerarchive.github</h1>
 <div class="subtitle">PRIVATE DIGITAL ARCHIVE • 2026</div>
+<small>mods • politics • cybersecurity • underground culture</small>
 
 <div class="nav">
-<button class="active" onclick="switchTab('news')">NEWS</button>
-<button onclick="switchTab('blog')">BLOG</button>
-<button onclick="switchTab('tutorials')">TUTORIALS</button>
-<button onclick="switchTab('terminal')">[hackertyper@archive]$</button>
-<button onclick="switchTab('games')">GAMES</button>
-<button onclick="switchTab('calc')">CALCULATOR</button>
-<button onclick="switchTab('search')">SEARCH</button>
+<button class="active" onclick="switchTab('news',this)">NEWS</button>
+<button onclick="switchTab('blog',this)">BLOG</button>
+<button onclick="switchTab('tutorials',this)">TUTORIALS</button>
+<button onclick="switchTab('games',this)">GAMES</button>
+<button onclick="switchTab('search',this)">SEARCH</button>
+<button onclick="switchTab('terminal',this)">[hackertyper@archive]$</button>
 </div>
 </div>
 
-<div class="searchbar">
-<input id="searchInput" placeholder="search titles, tags, content">
-<select id="sortSelect" onchange="sortItems()">
-<option value="az">A–Z</option>
-<option value="za">Z–A</option>
-</select>
-</div>
-
-<!-- NEWS -->
-<section id="news" class="section active searchable">
+<!-- ================= NEWS ================= -->
+<section id="news" class="section active">
 <div class="card accordion">
-<h3 onclick="toggle(this)">Massive Game Mod Leak</h3>
-<div class="meta">2026 • #mods #leak</div>
+<h3 onclick="toggle(this)">Massive Game Mod Leak Appears Online</h3>
+<div class="meta">2026 • #mods #leak #archive</div>
 <div class="content">
-Archive of unreleased mods leaked from private repositories.
+A large archive of unreleased game modifications surfaced on underground forums.
+The package includes experimental mechanics, unused assets, developer-only tools,
+internal documentation and test maps. Researchers believe the leak originated from
+a compromised private repository mirrored across multiple hosts.
 </div>
 </div>
-</section>
 
-<!-- BLOG -->
-<section id="blog" class="section searchable">
-<div class="card">
-<h3>2026 not affiliated by Anonymous</h3>
-<div class="content" style="display:block">
-Private archive. Not affiliated with Anonymous. Educational & archival purposes only.
-</div>
-</div>
-</section>
-
-<!-- TUTORIALS -->
-<section id="tutorials" class="section searchable">
 <div class="card accordion">
-<h3 onclick="toggle(this)">Linux Hardening</h3>
+<h3 onclick="toggle(this)">Political Campaign Databases Exposed</h3>
+<div class="meta">2026 • #politics #databreach</div>
 <div class="content">
-SSH keys only, firewall, auditd, IDS, logs.
+Misconfigured cloud storage exposed millions of voter profiles including segmentation data,
+email analytics and internal campaign notes. The dataset remained publicly accessible
+for weeks before takedown.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Legacy Systems Targeted by New Exploit</h3>
+<div class="meta">2026 • #hacking #zero-day</div>
+<div class="content">
+Security analysts confirmed active exploitation of outdated enterprise systems.
+The exploit abuses legacy authentication flows and weak service isolation still present
+in industrial environments.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Underground Forums Resurface After Takedown</h3>
+<div class="meta">2026 • #underground #forums</div>
+<div class="content">
+Several boards previously seized have reappeared using mirrored infrastructure,
+onion routing and distributed moderation. Admins claim improved OPSEC and backups.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Mass Credential Stuffing Campaign Detected</h3>
+<div class="meta">2026 • #breach #credentials</div>
+<div class="content">
+Leaked credential combos are being reused at scale against gaming platforms,
+email providers and legacy SSO endpoints using automated tooling.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Open-Source Tools Abused in the Wild</h3>
+<div class="meta">2026 • #opensource #abuse</div>
+<div class="content">
+Common open-source utilities were repurposed for unauthorized scanning and data scraping,
+highlighting the dual-use nature of many security tools.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Archive Mirrors Multiply After Censorship</h3>
+<div class="meta">2026 • #archive #mirrors</div>
+<div class="content">
+Community-driven mirrors proliferated following takedowns, emphasizing the resilience
+of distributed archiving practices.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Old CVEs, New Damage</h3>
+<div class="meta">2026 • #cve #legacy</div>
+<div class="content">
+Decade-old vulnerabilities continue to cause breaches where patching and asset inventory
+remain neglected.
 </div>
 </div>
 </section>
 
-<!-- GAMES -->
-<section id="games" class="section searchable">
+<!-- ================= BLOG ================= -->
+<section id="blog" class="section">
+<div class="card accordion">
+<h3 onclick="toggle(this)">2026 not affiliated by Anonymous</h3>
+<div class="content">
+This is a private, independent archive. It is not affiliated with Anonymous or any political
+organization. The purpose is documentation and preservation of digital culture, mods,
+incidents and underground history for research and archival reference.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Why Digital Archives Matter</h3>
+<div class="content">
+Digital history disappears faster than physical records. Forums shut down, repositories vanish,
+links rot and accounts are deleted. Without archives, context is lost. This project exists to
+preserve what would otherwise be erased.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Underground ≠ Criminal</h3>
+<div class="content">
+Underground communities include modders, researchers, archivists and hobbyists.
+Not all underground activity is malicious—much of it is experimental, educational and cultural.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">On Mods, Ownership and Preservation</h3>
+<div class="content">
+Mods extend the lifespan of games and software. Preservation requires careful handling,
+clear attribution and respect for creators while documenting historical context.
+</div>
+</div>
+</section>
+
+<!-- ================= TUTORIALS ================= -->
+<section id="tutorials" class="section">
+<div class="card accordion">
+<h3 onclick="toggle(this)">Linux Hardening Basics</h3>
+<div class="content">
+• Disable root SSH login<br>
+• Use key-based authentication<br>
+• Enable firewall (ufw/nftables)<br>
+• Audit logs with auditd<br>
+• Keep attack surface minimal
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Basic OPSEC for Online Privacy</h3>
+<div class="content">
+• Separate identities and roles<br>
+• Avoid account reuse<br>
+• Use password managers<br>
+• Understand metadata leakage<br>
+• Layer defenses; no single solution
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Networking Fundamentals</h3>
+<div class="content">
+Understand TCP/IP, DNS, routing, ports and NAT. Most incidents originate from
+misconfiguration rather than advanced exploitation.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Secure Backups & Archiving</h3>
+<div class="content">
+Maintain offline backups, verify integrity with hashes, keep multiple mirrors and document
+provenance to ensure long-term access.
+</div>
+</div>
+</section>
+
+<!-- ================= GAMES ================= -->
+<section id="games" class="section">
 <div class="card accordion">
 <h3 onclick="toggle(this)">CS 1.6</h3>
 <div class="content">
@@ -131,58 +242,25 @@ SSH keys only, firewall, auditd, IDS, logs.
 </div>
 </section>
 
-<!-- CALCULATOR -->
-<section id="calc" class="section">
-<div class="card calc">
-<h3>Hacker Calculator / Converter</h3>
-
-<input id="numInput" placeholder="enter number">
-<select id="baseSelect">
-<option value="10">DECIMAL</option>
-<option value="16">HEX</option>
-<option value="2">BINARY</option>
-<option value="8">OCTAL</option>
-</select>
-
-<button onclick="convert()">CONVERT</button>
-<p id="calcResult" style="margin-top:15px"></p>
-
-<hr style="margin:20px 0">
-
-<input id="a" placeholder="A">
-<select id="op">
-<option>+</option><option>-</option><option>*</option><option>/</option>
-</select>
-<input id="b" placeholder="B">
-
-<button onclick="math()">CALCULATE</button>
-<p id="mathResult"></p>
-</div>
-</section>
-
-<!-- SEARCH -->
+<!-- ================= SEARCH (EMBEDDED) ================= -->
 <section id="search" class="section">
 <div class="card">
-<h3>Hacker Search Engine</h3>
-<p style="color:#7dddc1;margin-bottom:15px">
-Direct Google / Chrome search – hacker styled interface
-</p>
-
-<form action="https://www.google.com/search" method="GET" target="_blank">
-<input name="q" placeholder="search the web..." style="width:100%;padding:12px;background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.6);border-radius:10px;margin-bottom:12px">
-<input type="hidden" name="safe" value="off">
-<button type="submit" style="padding:10px 20px;background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.6);border-radius:10px;cursor:pointer">
+<h3>Hacker Search</h3>
+<input id="ddgQuery" placeholder="search the web..."
+style="width:100%;padding:12px;background:black;color:#00ffaa;
+border:1px solid rgba(0,255,170,.6);border-radius:10px;margin-bottom:12px">
+<button onclick="runSearch()"
+style="padding:10px 18px;background:black;color:#00ffaa;
+border:1px solid rgba(0,255,170,.6);border-radius:10px;cursor:pointer">
 SEARCH
 </button>
-</form>
-
-<p style="margin-top:15px;font-size:.75rem;color:#666">
-results open in new tab • powered by Google
-</p>
+<iframe id="searchFrame"
+style="margin-top:18px;width:100%;height:650px;
+border:1px solid rgba(0,255,170,.3);border-radius:12px;background:black"></iframe>
 </div>
 </section>
 
-<!-- TERMINAL -->
+<!-- ================= TERMINAL ================= -->
 <section id="terminal" class="section">
 <div id="terminal">[hackertyper@archive]$ </div>
 </section>
@@ -205,13 +283,14 @@ if(d*fs>c.height&&Math.random()>.98)drops[i]=0;
 drops[i]++;
 });
 },50);
+addEventListener("resize",()=>{r();cols=Math.floor(c.width/fs);drops=Array(cols).fill(1)})
 
 /* NAV */
-function switchTab(id){
+function switchTab(id,btn){
 document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
-event.target.classList.add("active");
+btn.classList.add("active");
 }
 
 /* ACCORDION */
@@ -220,52 +299,19 @@ const c=el.nextElementSibling;
 c.style.display=c.style.display==="block"?"none":"block";
 }
 
-/* SEARCH (LOCAL) */
-searchInput.addEventListener("input",()=>{
-const q=searchInput.value.toLowerCase();
-document.querySelectorAll(".searchable .card").forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none";
-});
-});
-
-/* SORT */
-function sortItems(){
-const sec=document.querySelector(".section.active");
-if(!sec)return;
-[...sec.querySelectorAll(".card")]
-.sort((a,b)=>sortSelect.value==="az"
-?a.innerText.localeCompare(b.innerText)
-:b.innerText.localeCompare(a.innerText))
-.forEach(c=>sec.appendChild(c));
-}
-
-/* CALCULATOR */
-function convert(){
-const n=numInput.value;
-const b=parseInt(baseSelect.value);
-const v=parseInt(n,b);
-calcResult.innerHTML=
-"DEC: "+v+
-"<br>HEX: 0x"+v.toString(16)+
-"<br>BIN: "+v.toString(2)+
-"<br>OCT: "+v.toString(8);
-}
-function math(){
-const A=parseFloat(a.value),B=parseFloat(b.value);
-let r;
-switch(op.value){
-case '+':r=A+B;break;
-case '-':r=A-B;break;
-case '*':r=A*B;break;
-case '/':r=A/B;break;
-}
-mathResult.innerText="RESULT: "+r;
+/* SEARCH */
+function runSearch(){
+const q=document.getElementById("ddgQuery").value.trim();
+if(!q)return;
+document.getElementById("searchFrame").src=
+"https://duckduckgo.com/html/?q="+encodeURIComponent(q);
 }
 
 /* HACKERTYPER */
 document.addEventListener("keydown",()=>{
-if(!terminal.parentElement.classList.contains("active"))return;
-terminal.innerText+="sudo exploit --target legacy_system --force\n";
+const t=document.getElementById("terminal");
+if(!t.parentElement.classList.contains("active"))return;
+t.innerText+="sudo exploit --target legacy_system --force\n";
 });
 </script>
 </body>
