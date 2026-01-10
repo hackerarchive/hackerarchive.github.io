@@ -1,159 +1,98 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>hackerarchive.github</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'JetBrains Mono',monospace}
-body{background:black;color:#e6e6e6}
-#matrix{position:fixed;inset:0;z-index:-1}
-
-.header{max-width:1200px;margin:60px auto;padding:40px;background:rgba(0,0,0,.85);border:1px solid rgba(0,255,170,.35);border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
-h1{color:#00ffaa;font-size:3rem}
-.subtitle{color:#9ef5d5;margin:15px 0}
-.linktree a{color:#00ffaa;text-decoration:none;border-bottom:1px dashed rgba(0,255,170,.5)}
-
-.nav{display:flex;justify-content:center;gap:10px;margin-top:25px;flex-wrap:wrap}
-.nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);padding:8px 14px;border-radius:10px;cursor:pointer}
-.nav button.active{background:rgba(0,255,170,.2)}
-
-.section{display:none;max-width:1200px;margin:40px auto;padding:0 20px}
-.section.active{display:block}
-
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
-.card{background:rgba(0,0,0,.65);border:1px solid rgba(0,255,170,.3);border-radius:16px;padding:22px;cursor:pointer}
-
-.meta{font-size:.75rem;color:#7dddc1;margin-top:6px}
-.tags{font-size:.7rem;color:#00ffaa;margin-top:8px}
-
-/* ACCORDION */
-.accordion{border:1px solid rgba(0,255,170,.3);border-radius:14px;margin-bottom:15px}
-.accordion h3{padding:15px;color:#00ffaa;cursor:pointer}
-.accordion .content{display:none;padding:20px}
-
-/* TERMINAL */
-#terminal{background:black;border:1px solid rgba(0,255,170,.4);border-radius:14px;padding:20px;color:#00ffaa;min-height:420px;white-space:pre-wrap;font-size:.9rem}
-
-footer{text-align:center;color:#666;margin-bottom:30px}
-</style>
-</head>
-
-<body>
-<canvas id="matrix"></canvas>
-
-<div class="header">
-<h1>hackerarchive.github</h1>
-<div class="subtitle">PRIVATE DIGITAL ARCHIVE • 2026</div>
-
-<div class="linktree">
-<a href="https://linktr.ee/hackarchives" target="_blank">[ linktree@archive ]$</a>
-</div>
-
-<div class="nav">
-<button class="active" onclick="switchTab('news')">NEWS</button>
-<button onclick="switchTab('blog')">BLOG</button>
-<button onclick="switchTab('tutorials')">TUTORIALS</button>
-<button onclick="switchTab('terminal')">[faketerminal@archive]$</button>
-<button onclick="switchTab('games')">GAMES</button>
-</div>
-</div>
-
-<!-- NEWS -->
-<section id="news" class="section active">
-<div class="grid">
-<div class="card"><h3>Archived Cyber Incident #1</h3><div class="meta">2026-01-01</div><p>Exposed services due to misconfiguration.</p></div>
-<div class="card"><h3>Archived Cyber Incident #2</h3><div class="meta">2026-01-02</div><p>Database leaks detected in internal testing.</p></div>
-</div>
-</section>
-
-<!-- BLOG -->
-<section id="blog" class="section">
-<div class="card"><h2>2026 not affiliated by Anonymous</h2>
-<p style="margin-top:20px;line-height:1.9">
-Private archive documenting cybersecurity incidents, misconfigurations, underground digital culture.
-This project is <b>NOT affiliated</b> with Anonymous or any hacktivist group. It exists for educational and archival purposes.
-</p></div>
-</section>
-
-<!-- TUTORIALS -->
-<section id="tutorials" class="section">
-<div class="accordion">
-<h3 onclick="toggle(this)">Linux Server Hardening</h3>
-<div class="content">Disable unused services, SSH keys only, firewall rules, IDS, audit logs, automatic updates.</div>
-</div>
-
-<div class="accordion">
-<h3 onclick="toggle(this)">OSINT Fundamentals</h3>
-<div class="content">DNS analysis, metadata extraction, breach correlation, public intelligence sources.</div>
-</div>
-
-<div class="accordion">
-<h3 onclick="toggle(this)">Web Security Basics</h3>
-<div class="content">XSS, CSRF, input validation, CSP headers, secure cookies, HTTPS enforcement.</div>
-</div>
-</section>
-
-<!-- TERMINAL -->
-<section id="terminal" class="section">
-<div class="card">[faketerminal@archive]$ fake bash terminal</div>
-</section>
-
 <!-- GAMES -->
 <section id="games" class="section">
+
 <div class="accordion">
-<h3 onclick="toggle(this)">CS 1.6</h3>
-<div class="content">
-<div class="card">
-<h3>AK47 GALAXY PAINT</h3>
-<div class="meta">Counter-Strike 1.6 • Weapon Skin</div>
-<div class="tags">#cs16 #ak47 #skin</div>
-<p style="margin-top:15px;line-height:1.8">
-Custom AK-47 Galaxy Paint skin for CS 1.6. Visual mod only.
-</p>
-<a href="ak47-galaxy-paint.rar" download style="display:inline-block;margin-top:18px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:12px;color:#00ffaa;text-decoration:none;box-shadow:0 0 20px rgba(0,255,170,.3);">
-AK47 GALAXY PAINT (DOWNLOAD)
-</a>
+  <h3 onclick="toggle(this)">CS 1.6</h3>
+  <div class="content">
+
+    <div class="card">
+      <h3>AK47 GALAXY PAINT</h3>
+      <div class="meta">Counter-Strike 1.6 • Weapon Skin</div>
+      <div class="tags">#cs16 #ak47 #skin</div>
+      <p>Custom AK-47 Galaxy Paint skin for CS 1.6. Visual mod only.</p>
+      <a href="ak47-galaxy-paint.rar" download class="download-btn">DOWNLOAD</a>
+    </div>
+
+    <div class="card">
+      <h3>M4A1 NEON STRIKE</h3>
+      <div class="meta">Counter-Strike 1.6 • Weapon Skin</div>
+      <div class="tags">#cs16 #m4a1 #skin</div>
+      <p>Custom M4A1 Neon Strike skin for CS 1.6. Visual mod only.</p>
+      <a href="m4a1-neon-strike.rar" download class="download-btn">DOWNLOAD</a>
+    </div>
+
+  </div>
 </div>
+
+<div class="accordion">
+  <h3 onclick="toggle(this)">Half-Life 2</h3>
+  <div class="content">
+
+    <div class="card">
+      <h3>Gravity Gun Upgrade</h3>
+      <div class="meta">Half-Life 2 • Weapon Mod</div>
+      <div class="tags">#hl2 #gravitygun #mod</div>
+      <p>Enhanced Gravity Gun mod with visual effects and sound enhancements.</p>
+      <a href="gravity-gun-upgrade.rar" download class="download-btn">DOWNLOAD</a>
+    </div>
+
+    <div class="card">
+      <h3>Combine Elite Skin</h3>
+      <div class="meta">Half-Life 2 • Skin Pack</div>
+      <div class="tags">#hl2 #combine #skin</div>
+      <p>Elite Combine soldier skin pack for HL2.</p>
+      <a href="combine-elite-skin.rar" download class="download-btn">DOWNLOAD</a>
+    </div>
+
+  </div>
 </div>
+
+<div class="accordion">
+  <h3 onclick="toggle(this)">GTA: San Andreas</h3>
+  <div class="content">
+
+    <div class="card">
+      <h3>Police Car Pack</h3>
+      <div class="meta">GTA: SA • Vehicle Mod</div>
+      <div class="tags">#gta-sa #vehicles #mod</div>
+      <p>Custom police vehicles with upgraded textures.</p>
+      <a href="police-car-pack.rar" download class="download-btn">DOWNLOAD</a>
+    </div>
+
+    <div class="card">
+      <h3>Weapon Pack V2</h3>
+      <div class="meta">GTA: SA • Weapon Mod</div>
+      <div class="tags">#gta-sa #weapons #mod</div>
+      <p>Complete weapon replacement pack for GTA: San Andreas.</p>
+      <a href="weapon-pack-v2.rar" download class="download-btn">DOWNLOAD</a>
+    </div>
+
+  </div>
 </div>
+
 </section>
 
-<footer>© 2026 <span style="color:#00ffaa">hackerarchive.github</span></footer>
+<style>
+.download-btn{
+display:inline-block;
+margin-top:10px;
+padding:10px 18px;
+border:1px solid rgba(0,255,170,.6);
+border-radius:10px;
+color:#00ffaa;
+text-decoration:none;
+box-shadow:0 0 15px rgba(0,255,170,.3);
+transition:0.2s;
+}
+.download-btn:hover{
+background:rgba(0,255,170,.1);
+box-shadow:0 0 25px rgba(0,255,170,.5);
+}
+</style>
 
 <script>
-/* MATRIX */
-const c=document.getElementById("matrix"),x=c.getContext("2d");
-function r(){c.width=innerWidth;c.height=innerHeight}r();
-const ch="01ABCDEF#$%&@",fs=14;
-let cols=Math.floor(c.width/fs),drops=Array(cols).fill(1);
-setInterval(()=>{
-x.fillStyle="rgba(0,0,0,.08)";
-x.fillRect(0,0,c.width,c.height);
-x.fillStyle="#00ffaa";
-x.font=fs+"px monospace";
-drops.forEach((d,i)=>{
-x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
-if(d*fs>c.height&&Math.random()>.98)drops[i]=0;
-drops[i]++;
-});
-},50);
-
-/* NAV */
-function switchTab(id){
-document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
-event.target.classList.add("active");
-}
-
-/* ACCORDION */
 function toggle(el){
-const c = el.nextElementSibling;
-c.style.display = c.style.display === "block" ? "none" : "block";
+  const content = el.nextElementSibling;
+  content.style.display = content.style.display === "block" ? "none" : "block";
 }
 </script>
-</body>
-</html>
