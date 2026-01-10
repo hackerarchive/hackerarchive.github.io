@@ -4,136 +4,50 @@
 <meta charset="UTF-8">
 <title>hackerarchive.github</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'JetBrains Mono',monospace}
-body{background:black;color:#e6e6e6;overflow-x:hidden}
-html{scroll-behavior:smooth}
-
-/* MATRIX */
+body{background:black;color:#e6e6e6}
 #matrix{position:fixed;inset:0;z-index:-1}
-
-/* HEADER */
-.header{
-max-width:1050px;margin:70px auto;padding:40px;
-background:rgba(0,0,0,.78);
-border-radius:18px;
-border:1px solid rgba(0,255,170,.35);
-box-shadow:0 0 60px rgba(0,255,170,.25);
-text-align:center
-}
-.header h1{font-size:3rem;color:#00ffaa}
-.subtitle{color:#9ef5d5;margin:15px 0 25px;letter-spacing:1px}
-.header p{line-height:1.7;color:#d0d0d0}
-
-/* LINKTREE */
-.linktree{margin:20px 0}
-.linktree a{
-color:#00ffaa;
-text-decoration:none;
-border-bottom:1px dashed rgba(0,255,170,.5);
-font-size:.95rem
-}
-.linktree a:hover{color:#fff}
-
-/* NAV */
-.nav{
-display:flex;justify-content:center;gap:20px;
-margin-top:25px;flex-wrap:wrap
-}
-.nav button{
-background:transparent;color:#00ffaa;
-border:1px solid rgba(0,255,170,.4);
-padding:8px 18px;border-radius:10px;
-cursor:pointer;transition:.3s
-}
-.nav button.active,.nav button:hover{
-background:rgba(0,255,170,.15);
-box-shadow:0 0 15px rgba(0,255,170,.4)
-}
-
-/* SEARCH */
-.search-box{max-width:400px;margin:25px auto 0}
-.search-box input{
-width:100%;padding:12px;
-background:black;color:#00ffaa;
-border:1px solid rgba(0,255,170,.4);
-border-radius:12px
-}
-
-/* SECTIONS */
-.section{display:none;max-width:1150px;margin:0 auto 90px;padding:0 20px}
+.header{max-width:1100px;margin:70px auto;padding:40px;
+background:rgba(0,0,0,.8);border:1px solid rgba(0,255,170,.35);
+border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
+h1{color:#00ffaa;font-size:3rem}
+.subtitle{color:#9ef5d5;margin:15px 0}
+.linktree a{color:#00ffaa;text-decoration:none;border-bottom:1px dashed rgba(0,255,170,.5)}
+.nav{display:flex;justify-content:center;gap:15px;margin-top:25px;flex-wrap:wrap}
+.nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
+padding:8px 16px;border-radius:10px;cursor:pointer}
+.nav button.active{background:rgba(0,255,170,.2)}
+.controls{display:flex;gap:15px;justify-content:center;margin-top:25px;flex-wrap:wrap}
+input,select{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
+padding:10px;border-radius:10px}
+.section{display:none;max-width:1200px;margin:40px auto;padding:0 20px}
 .section.active{display:block}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:25px
-}
-
-.card{
-background:rgba(0,0,0,.65);
-border:1px solid rgba(0,255,170,.3);
-border-radius:16px;padding:22px;
-cursor:pointer;transition:.3s
-}
-.card:hover{
-transform:translateY(-6px);
-box-shadow:0 0 35px rgba(0,255,170,.4)
-}
-.card h3{color:#00ffaa;margin-bottom:8px}
-.card span{font-size:.75rem;color:#7dddc1}
-.card p{margin-top:12px;font-size:.88rem;line-height:1.6}
-
-.badge{
-display:inline-block;margin-top:12px;
-font-size:.7rem;padding:4px 8px;
-border-radius:8px;
-background:rgba(0,255,170,.15);
-color:#00ffaa
-}
-
-/* DETAILS */
-.details{
-max-width:1000px;margin:0 auto 100px;padding:45px;
-background:rgba(0,0,0,.8);
-border-radius:18px;
-border:1px solid rgba(0,255,170,.35);
-box-shadow:0 0 60px rgba(0,255,170,.25);
-opacity:0;transform:translateY(40px);transition:.4s
-}
-.details.active{opacity:1;transform:translateY(0)}
-.details h2{color:#00ffaa}
-.details span{font-size:.8rem;color:#7dddc1}
-.details p{margin-top:22px;line-height:1.9}
-
-/* FOOTER */
-footer{text-align:center;color:#666;font-size:.85rem;margin-bottom:30px}
-footer span{color:#00ffaa}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
+.card{background:rgba(0,0,0,.65);border:1px solid rgba(0,255,170,.3);
+border-radius:16px;padding:22px;cursor:pointer}
+.card h3{color:#00ffaa}
+.meta{font-size:.75rem;color:#7dddc1;margin-top:5px}
+.tags{margin-top:10px;font-size:.7rem;color:#00ffaa}
+.details{max-width:1000px;margin:80px auto;padding:45px;
+background:rgba(0,0,0,.85);border-radius:18px;
+border:1px solid rgba(0,255,170,.35);display:none}
+.details.active{display:block}
+footer{text-align:center;color:#666;margin-bottom:30px}
 </style>
 </head>
 
 <body>
-
 <canvas id="matrix"></canvas>
 
 <div class="header">
 <h1>hackerarchive.github</h1>
 <div class="subtitle">NEWS • BLOG • TUTORIALS • DIGITAL ARCHIVE</div>
 
-<p>
-Independent archive of cybersecurity incidents,
-programming knowledge and underground digital culture.
-</p>
-
-<!-- LINKTREE WRÓCIŁ -->
 <div class="linktree">
-<a href="https://linktr.ee/hackarchives" target="_blank">
-[ linktree@archive ]$
-</a>
+<a href="https://linktr.ee/hackarchives" target="_blank">[ linktree@archive ]$</a>
 </div>
 
 <div class="nav">
@@ -142,109 +56,111 @@ programming knowledge and underground digital culture.
 <button onclick="switchTab('tutorials')">TUTORIALS</button>
 </div>
 
-<div class="search-box">
-<input type="text" id="search" placeholder="search archive..." onkeyup="filterContent()">
+<div class="controls">
+<input id="search" placeholder="search title or content..." onkeyup="render()">
+<select id="sort" onchange="render()">
+<option value="date">sort: date</option>
+<option value="alpha">sort: A-Z</option>
+<option value="tag">sort: hashtag</option>
+</select>
 </div>
 </div>
 
-<!-- NEWS -->
-<section id="news" class="section active">
-<div class="grid content">
-<div class="card" onclick="openDetails(newsArchive[0])">
-<h3>Healthcare Database Leak Exposes 700k Records</h3>
-<span>Cybersecurity • 2026</span>
-<p>Misconfigured servers exposed sensitive patient data.</p>
-<div class="badge">REAL INCIDENT</div>
-</div>
-</div>
-</section>
+<section id="news" class="section active"><div class="grid" id="newsGrid"></div></section>
+<section id="blog" class="section"><div class="grid" id="blogGrid"></div></section>
+<section id="tutorials" class="section"><div class="grid" id="tutorialGrid"></div></section>
 
-<!-- BLOG -->
-<section id="blog" class="section">
-<div class="grid content">
-<div class="card" onclick="openDetails(blog[0])">
-<h3>How Hackers Use OSINT</h3>
-<span>OSINT • Recon</span>
-<p>Understanding open-source intelligence.</p>
-<div class="badge">BLOG</div>
-</div>
-</div>
-</section>
-
-<!-- TUTORIALS -->
-<section id="tutorials" class="section">
-<div class="grid content">
-<div class="card" onclick="openDetails(tutorials[0])">
-<h3>Linux Hardening Basics</h3>
-<span>Security • Linux</span>
-<p>Reduce attack surface step-by-step.</p>
-<div class="badge">TUTORIAL</div>
-</div>
-</div>
-</section>
-
-<section id="details" class="details">
+<section class="details" id="details">
 <h2 id="dTitle"></h2>
-<span id="dMeta"></span>
-<p id="dContent"></p>
+<div class="meta" id="dMeta"></div>
+<p id="dContent" style="margin-top:25px;line-height:1.9"></p>
 </section>
 
-<footer>
-© 2026 <span>hackerarchive.github</span>
-</footer>
+<footer>© 2026 <span style="color:#00ffaa">hackerarchive.github</span></footer>
 
 <script>
 /* MATRIX */
 const c=document.getElementById("matrix"),x=c.getContext("2d");
-function r(){c.width=innerWidth;c.height=innerHeight}
-r();const ch="01ABCDEF#$%&@",fs=14;
+function r(){c.width=innerWidth;c.height=innerHeight}r();
+const ch="01ABCDEF#$%&@",fs=14;
 let cols=Math.floor(c.width/fs),drops=Array(cols).fill(1);
 setInterval(()=>{x.fillStyle="rgba(0,0,0,.08)";
 x.fillRect(0,0,c.width,c.height);
 x.fillStyle="#00ffaa";x.font=fs+"px monospace";
 drops.forEach((d,i)=>{x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
-if(d*fs>c.height&&Math.random()>.975)drops[i]=0;drops[i]++})},50);
+if(d*fs>c.height&&Math.random()>.98)drops[i]=0;drops[i]++})},50);
 
 /* DATA */
-const newsArchive=[{
-title:"Healthcare Database Leak Exposes 700k Records",
-meta:"Cybersecurity • 2026",
-content:"A healthcare authority confirmed misconfigured servers exposed data of over 700,000 individuals."
-}];
+const news=[
+{title:"700k Healthcare Records Exposed",date:"2026-01-02",tags:"#databreach #healthcare",
+content:"Misconfigured public servers leaked sensitive patient records. Attackers exploited open cloud storage with no authentication."},
+{title:"Zero-Day Actively Exploited in iOS",date:"2026-01-05",tags:"#zeroday #apple",
+content:"Apple patched two vulnerabilities abused in targeted espionage campaigns."},
+{title:"Infostealer Malware Campaign Expands",date:"2026-01-08",tags:"#malware #infostealer",
+content:"Credential-stealing malware harvested passwords due to missing MFA."}
+];
 
-const blog=[{
-title:"How Hackers Use OSINT",
-meta:"OSINT • Recon",
-content:"OSINT involves gathering intelligence from public sources like metadata, DNS records and archives."
-}];
+const blog=[
+{title:"How Hackers Think During Recon",date:"2026-01-03",tags:"#osint #recon",
+content:"Reconnaissance focuses on mapping attack surfaces using DNS, metadata, breached databases and public archives. Defenders must monitor exposure."},
+{title:"Why Misconfiguration Is the #1 Threat",date:"2026-01-06",tags:"#cloud #security",
+content:"Most breaches originate from exposed ports, default passwords and open cloud buckets — not advanced exploits."},
+{title:"Understanding Modern Ransomware",date:"2026-01-09",tags:"#ransomware #analysis",
+content:"Modern ransomware uses double extortion, data leaks and affiliate models."}
+];
 
-const tutorials=[{
-title:"Linux Hardening Basics",
-meta:"Security • Linux",
-content:"Disable unused services, enable firewall rules, restrict SSH and keep systems updated."
-}];
+const tutorials=[
+{title:"Linux Server Hardening Guide",date:"2026-01-01",tags:"#linux #hardening",
+content:"Disable unused services, enforce firewall rules, configure SSH keys, enable logging and automate updates."},
+{title:"JavaScript Security Checklist",date:"2026-01-04",tags:"#javascript #websec",
+content:"Avoid eval(), sanitize input, implement CSP headers, protect against XSS and CSRF."},
+{title:"Ethical Hacking Learning Path",date:"2026-01-07",tags:"#career #hacking",
+content:"Learn networking, Linux, scripting, web security, then practice legally via labs and CTFs."}
+];
 
-/* UI */
-function openDetails(o){
-details.classList.add("active");
-dTitle.textContent=o.title;
-dMeta.textContent=o.meta;
-dContent.textContent=o.content;
-details.scrollIntoView({behavior:"smooth"})
+/* FUNCTIONS */
+function render(){
+renderSection(news,"newsGrid");
+renderSection(blog,"blogGrid");
+renderSection(tutorials,"tutorialGrid");
 }
+
+function renderSection(arr,id){
+let q=search.value.toLowerCase();
+let s=sort.value;
+let data=[...arr].filter(e=>
+(e.title+e.content).toLowerCase().includes(q));
+
+if(s==="alpha")data.sort((a,b)=>a.title.localeCompare(b.title));
+if(s==="date")data.sort((a,b)=>b.date.localeCompare(a.date));
+if(s==="tag")data.sort((a,b)=>a.tags.localeCompare(b.tags));
+
+document.getElementById(id).innerHTML=data.map(e=>`
+<div class="card" onclick="open(e)">
+<h3>${e.title}</h3>
+<div class="meta">${e.date}</div>
+<div class="tags">${e.tags}</div>
+</div>`).join("");
+}
+
+function open(e){
+details.classList.add("active");
+dTitle.textContent=e.title;
+dMeta.textContent=e.date+" • "+e.tags;
+dContent.textContent=e.content;
+details.scrollIntoView({behavior:"smooth"});
+}
+
 function switchTab(id){
 document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
 event.target.classList.add("active");
+render();
 }
-function filterContent(){
-const q=search.value.toLowerCase();
-document.querySelectorAll(".content .card").forEach(c=>{
-c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none";
-});
-}
-</script>
 
+render();
+</script>
 </body>
 </html>
+
