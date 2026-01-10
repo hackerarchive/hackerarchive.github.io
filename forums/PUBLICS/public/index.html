@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>HackForum.github</title>
+<style>
+    body { background: black; color: #00FF00; font-family: 'Courier New', monospace; padding: 20px; }
+    input, textarea { width: 100%; margin: 5px 0; background: #111; color: #0F0; border: 1px solid #0F0; padding: 5px; }
+    button { background: #0F0; color: black; border: none; padding: 5px 10px; cursor: pointer; }
+    .post { border-bottom: 1px dashed #0F0; margin: 10px 0; padding: 5px; }
+    .nick { font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h1>HackForum.github</h1>
+
+<div>
+    <input type="text" id="nick" placeholder="Twój nick">
+    <textarea id="post" placeholder="Twój post"></textarea>
+    <button onclick="addPost()">Dodaj post</button>
+</div>
+
+<div>
+    <input type="text" id="search" placeholder="Szukaj po nicku lub poście" oninput="loadPosts()">
+</div>
+
+<h2>Wpisy:</h2>
+<div id="posts"></div>
+
+<script>
+async function addPost() {
+    const nick = document.getElementById('nick').value.trim();
+    const post = document.getElementById('post').value.trim();
+
+    if (!nick || !post) return alert('Wypełnij nick i post!');
+
+    await fetch('/add-post', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nick, post })
+    });
+
+    document.getElementById('nick').value = '';
+    document.getElementById('post').value = '';
+    loadPosts();
+}
+
+async function loadPosts() {
+    const search = document.getElementById('search').value.toLowerCase();
+    const response = await fetch('/posts');
+    const posts = await response.json();
+
+    const filtered = posts.filter(p =>
+        p.nick.toLowerCase().includes(search) ||
+        p.post.toLowerCase().includes(search)
+    );
+
+    const container = document.getElementById('posts');
+    container.innerHTML = '';
+    filtered.forEach(p => {
+        const div = document.createElement('div');
+        div.className = 'post';
+        div.innerHTML = `<span class="nick">${p.nick}</span>: ${p.post}`;
+        container.appendChild(div);
+    });
+}
+
+// Załaduj od razu
+loadPosts();
+</script>
+</body>
+</html>
