@@ -1,169 +1,227 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>HackerArchive – Nauka Pythona</title>
+  <title>HackerArchive – Python Knowledge Archive</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <style>
-    body {
-      background: #0d0d0d;
-      color: #e6e6e6;
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: black;
+      color: #e0e0e0;
       font-family: Consolas, Monaco, monospace;
-      line-height: 1.7;
-      padding: 40px;
-      max-width: 900px;
-      margin: auto;
+      height: 100%;
     }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+    }
+
+    .content {
+      max-width: 1000px;
+      margin: auto;
+      padding: 60px 40px;
+      background: rgba(0, 0, 0, 0.75);
+    }
+
     h1, h2, h3 {
       color: #00ff99;
     }
+
+    pre {
+      background: #050505;
+      padding: 16px;
+      border-left: 3px solid #00ff99;
+      overflow-x: auto;
+    }
+
     code {
-      background: #111;
-      padding: 2px 6px;
-      border-radius: 4px;
       color: #00ffcc;
     }
-    pre {
-      background: #111;
-      padding: 15px;
-      overflow-x: auto;
-      border-left: 3px solid #00ff99;
-    }
-    .intro {
-      font-size: 1.1em;
-      color: #cccccc;
+
+    footer {
+      margin-top: 80px;
+      text-align: center;
+      color: #777;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
 
+<canvas id="matrix"></canvas>
+
+<div class="content">
+
 <h1>HackerArchive</h1>
-<p class="intro">
-  Jeden długi tekst. Jedna strona. Jedno miejsce, w którym nauczysz się Pythona od zera – bez rozpraszaczy.
+<p>
+A single, long-form knowledge archive. No distractions. Just Python, code, libraries, and real-world usage.
 </p>
 
-<h2>1. Czym jest Python?</h2>
+<h2>1. What is Python?</h2>
 <p>
-Python to nowoczesny, interpretowany język programowania, który słynie z prostoty i czytelności.
-Używany jest w cyberbezpieczeństwie, automatyzacji, analizie danych, AI, web developmencie i hackingu.
+Python is a high-level, interpreted programming language known for readability, simplicity, and power.
+It is used in cybersecurity, automation, scripting, data science, artificial intelligence, web development,
+reverse engineering, and exploitation research.
 </p>
 
-<h2>2. Pierwszy program</h2>
+<h2>2. Python Philosophy</h2>
 <p>
-Każdy język zaczyna się od prostego przykładu. W Pythonie wygląda to tak:
+Python follows the Zen of Python:
 </p>
-<pre><code>print("Hello, world!")</code></pre>
+<pre><code>import this</code></pre>
 <p>
-Funkcja <code>print</code> wypisuje tekst na ekranie.
+Readable code matters. Explicit is better than implicit.
 </p>
 
-<h2>3. Zmienne</h2>
-<p>
-Zmienne służą do przechowywania danych. Python nie wymaga deklarowania typu.
-</p>
-<pre><code>x = 10
-y = "tekst"
-pi = 3.14</code></pre>
+<h2>3. Basic Syntax</h2>
+<pre><code>print("Hello, Hacker")
+x = 42
+name = "Gabriel"</code></pre>
 
-<h2>4. Typy danych</h2>
-<p>
-Najważniejsze typy danych w Pythonie:
-</p>
+<h2>4. Data Types</h2>
 <ul>
-  <li><code>int</code> – liczby całkowite</li>
-  <li><code>float</code> – liczby zmiennoprzecinkowe</li>
-  <li><code>str</code> – tekst</li>
-  <li><code>bool</code> – True / False</li>
+  <li>int – integers</li>
+  <li>float – decimal numbers</li>
+  <li>str – strings</li>
+  <li>bool – True / False</li>
+  <li>list – ordered collections</li>
+  <li>tuple – immutable collections</li>
+  <li>dict – key-value mappings</li>
+  <li>set – unique values</li>
 </ul>
 
-<h2>5. Warunki</h2>
-<p>
-Instrukcje warunkowe pozwalają podejmować decyzje.
-</p>
-<pre><code>age = 18
-
-if age >= 18:
-    print("Dostęp przyznany")
+<h2>5. Control Flow</h2>
+<pre><code>if x > 10:
+    print("Access granted")
+elif x == 10:
+    print("Partial access")
 else:
-    print("Brak dostępu")</code></pre>
+    print("Access denied")</code></pre>
 
-<h2>6. Pętle</h2>
-<p>
-Pętle pozwalają wykonywać kod wielokrotnie.
-</p>
-<pre><code>for i in range(5):
+<h2>6. Loops</h2>
+<pre><code>for i in range(10):
     print(i)</code></pre>
 
-<pre><code>x = 0
-while x < 5:
-    print(x)
-    x += 1</code></pre>
+<pre><code>while True:
+    break</code></pre>
 
-<h2>7. Funkcje</h2>
+<h2>7. Functions</h2>
+<pre><code>def scan(target):
+    return f"Scanning {target}"</code></pre>
+
+<h2>8. Object-Oriented Programming</h2>
+<pre><code>class User:
+    def __init__(self, username):
+        self.username = username
+
+    def login(self):
+        print(self.username, "logged in")</code></pre>
+
+<h2>9. File Operations</h2>
+<pre><code>with open("log.txt", "a") as f:
+    f.write("Connected\n")</code></pre>
+
+<h2>10. Error Handling</h2>
+<pre><code>try:
+    x = int("abc")
+except ValueError:
+    print("Conversion failed")</code></pre>
+
+<h2>11. Virtual Environments</h2>
+<pre><code>python -m venv venv
+source venv/bin/activate</code></pre>
+
+<h2>12. Important Libraries</h2>
+<ul>
+  <li><b>os</b> – operating system interaction</li>
+  <li><b>sys</b> – interpreter internals</li>
+  <li><b>subprocess</b> – process control</li>
+  <li><b>socket</b> – networking</li>
+  <li><b>requests</b> – HTTP requests</li>
+  <li><b>beautifulsoup4</b> – web scraping</li>
+  <li><b>flask</b> – web apps & APIs</li>
+  <li><b>django</b> – full-stack web framework</li>
+  <li><b>numpy</b> – numerical computing</li>
+  <li><b>pandas</b> – data analysis</li>
+  <li><b>scapy</b> – packet manipulation</li>
+  <li><b>pwntools</b> – exploit development</li>
+  <li><b>cryptography</b> – encryption</li>
+</ul>
+
+<h2>13. Networking Example</h2>
+<pre><code>import socket
+s = socket.socket()
+s.connect(("example.com", 80))</code></pre>
+
+<h2>14. Automation</h2>
+<pre><code>import os
+os.system("nmap localhost")</code></pre>
+
+<h2>15. Web Scraping</h2>
+<pre><code>import requests
+from bs4 import BeautifulSoup</code></pre>
+
+<h2>16. Python for Security</h2>
 <p>
-Funkcje pozwalają organizować kod.
+Python is widely used in:
 </p>
-<pre><code>def greet(name):
-    return "Cześć " + name
+<ul>
+  <li>penetration testing</li>
+  <li>malware analysis</li>
+  <li>forensics</li>
+  <li>CTF challenges</li>
+  <li>reverse engineering</li>
+</ul>
 
-print(greet("Anon"))</code></pre>
-
-<h2>8. Listy</h2>
+<h2>17. Final Notes</h2>
 <p>
-Listy przechowują wiele wartości.
+This page is intentionally long. Knowledge should feel dense. Read slowly. Experiment constantly.
 </p>
-<pre><code>tools = ["nmap", "sqlmap", "hydra"]
 
-for tool in tools:
-    print(tool)</code></pre>
+<footer>
+  © 2020 Gabriel Krup. hackerarchive.github
+</footer>
 
-<h2>9. Słowniki</h2>
-<p>
-Słowniki przechowują dane w parach klucz-wartość.
-</p>
-<pre><code>user = {
-    "login": "admin",
-    "password": "1234"
+</div>
+
+<script>
+const canvas = document.getElementById("matrix");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+const fontSize = 16;
+const columns = canvas.width / fontSize;
+const drops = Array(Math.floor(columns)).fill(1);
+
+function draw() {
+  ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#00ff99";
+  ctx.font = fontSize + "px monospace";
+
+  for (let i = 0; i < drops.length; i++) {
+    const text = letters[Math.floor(Math.random() * letters.length)];
+    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975)
+      drops[i] = 0;
+
+    drops[i]++;
+  }
 }
 
-print(user["login"])</code></pre>
-
-<h2>10. Praca z plikami</h2>
-<pre><code>with open("data.txt", "w") as f:
-    f.write("Hello")</code></pre>
-
-<h2>11. Moduły</h2>
-<p>
-Python posiada tysiące modułów.
-</p>
-<pre><code>import os
-print(os.getcwd())</code></pre>
-
-<h2>12. Python w praktyce</h2>
-<p>
-Python jest często używany do:
-</p>
-<ul>
-  <li>automatyzacji zadań</li>
-  <li>tworzenia skryptów security</li>
-  <li>analizy logów</li>
-  <li>web scrapingu</li>
-  <li>AI i ML</li>
-</ul>
-
-<h2>13. Następne kroki</h2>
-<p>
-Jeśli dotarłeś tutaj – masz podstawy. Dalej ucz się:
-</p>
-<ul>
-  <li>programowania obiektowego</li>
-  <li>bibliotek: requests, flask, pandas</li>
-  <li>czytania чужego kodu</li>
-</ul>
-
-<p>
-<b>HackerArchive</b> – wiedza zapisana w jednym długim tekście.
-</p>
+setInterval(draw, 33);
+</script>
 
 </body>
 </html>
