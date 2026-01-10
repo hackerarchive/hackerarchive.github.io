@@ -14,6 +14,7 @@ body{background:black;color:#e6e6e6}
 .header{max-width:1200px;margin:60px auto;padding:40px;
 background:rgba(0,0,0,.85);border:1px solid rgba(0,255,170,.35);
 border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
+
 h1{color:#00ffaa;font-size:3rem}
 .subtitle{color:#9ef5d5;margin:15px 0}
 .linktree a{color:#00ffaa;text-decoration:none;border-bottom:1px dashed rgba(0,255,170,.5)}
@@ -22,6 +23,12 @@ h1{color:#00ffaa;font-size:3rem}
 .nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
 padding:8px 14px;border-radius:10px;cursor:pointer}
 .nav button.active{background:rgba(0,255,170,.2)}
+
+.controls{display:flex;gap:15px;justify-content:center;margin-top:20px;flex-wrap:wrap}
+input,select{
+background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
+padding:10px;border-radius:10px
+}
 
 .section{display:none;max-width:1200px;margin:40px auto;padding:0 20px}
 .section.active{display:block}
@@ -46,16 +53,14 @@ display:none
 .accordion h3{padding:15px;color:#00ffaa;cursor:pointer}
 .accordion p{padding:0 15px 15px;display:none;line-height:1.9}
 
-/* HACKERTYPER */
+/* TERMINAL */
 #terminal{
 background:black;border:1px solid rgba(0,255,170,.4);
 border-radius:14px;padding:20px;
 color:#00ffaa;min-height:420px;
-white-space:pre-wrap;font-size:.85rem
+white-space:pre-wrap;font-size:.9rem
 }
-.disclaimer{
-font-size:.7rem;color:#7dddc1;margin-top:10px
-}
+#cmd{outline:none;border:none;background:black;color:#00ffaa;width:100%}
 
 footer{text-align:center;color:#666;margin-bottom:30px}
 </style>
@@ -76,44 +81,47 @@ footer{text-align:center;color:#666;margin-bottom:30px}
 <button class="active" onclick="switchTab('news')">NEWS</button>
 <button onclick="switchTab('blog')">BLOG</button>
 <button onclick="switchTab('tutorials')">TUTORIALS</button>
-<button onclick="switchTab('hackertyper')">[hackertyper@archive]$</button>
+<button onclick="switchTab('terminal')">[faketerminal@archive]$</button>
+</div>
+
+<div class="controls">
+<input id="search" placeholder="search title or content..." onkeyup="render()">
+<select id="sort" onchange="render()">
+<option value="date">sort by date</option>
+<option value="alpha">sort A-Z</option>
+<option value="tag">sort by hashtag</option>
+</select>
 </div>
 </div>
 
-<!-- NEWS -->
 <section id="news" class="section active">
 <div class="grid" id="newsGrid"></div>
 </section>
 
-<!-- BLOG -->
 <section id="blog" class="section">
 <div class="details active">
 <h2>2026 not affiliated by Anonymous</h2>
 <div class="meta">private archive page</div>
 <p style="margin-top:25px;line-height:1.9">
-This website is a private, independent archive documenting cybersecurity incidents,
-misconfigurations, underground research and historical digital leaks.<br><br>
+This website is a private and independent archive documenting cybersecurity incidents,
+misconfigurations, underground research and digital failures.<br><br>
 
-This project is <b>NOT affiliated with Anonymous</b>, hacktivist groups or any organization.
-It exists for archival, educational and analytical purposes only.<br><br>
+This project is NOT affiliated with Anonymous or any hacktivist group.
+It exists for educational and archival purposes only.<br><br>
 
-Most breaches are not caused by elite hackers — but by ignored warnings,
-open systems and silent negligence. This archive records the evidence.
+Most breaches are caused by negligence, not elite hacking.
+This archive documents what others try to forget.
 </p>
 </div>
 </section>
 
-<!-- TUTORIALS -->
 <section id="tutorials" class="section">
 <div id="tutorialList"></div>
 </section>
 
-<!-- HACKERTYPER -->
-<section id="hackertyper" class="section">
-<div id="terminal"></div>
-<div class="disclaimer">
-Simulation only. Displays real programming and system code fragments randomly.
-Inspired by hackertyper.net. No real hacking is performed.
+<section id="terminal" class="section">
+<div id="terminal">
+[faketerminal@archive]$ <input id="cmd" autofocus>
 </div>
 </section>
 
@@ -131,34 +139,52 @@ x.fillStyle="#00ffaa";x.font=fs+"px monospace";
 drops.forEach((d,i)=>{x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
 if(d*fs>c.height&&Math.random()>.98)drops[i]=0;drops[i]++})},50);
 
-/* NEWS DATA – 20 */
+/* DATA */
 const news=[...Array(20)].map((_,i)=>({
 title:`Archived Cyber Incident #${i+1}`,
 date:`2026-01-${String(i+1).padStart(2,"0")}`,
 tags:"#databreach #cybersecurity",
-content:`Detailed incident report #${i+1}.
-This archive entry documents exposed systems, misconfigured services,
-open databases and security failures observed in real-world environments.
+content:`FULL REPORT #${i+1}
 
-Analysis includes timeline reconstruction, probable attack vectors
-and lessons learned for defensive security teams.`
+This incident documents exposed infrastructure, misconfigured services,
+open databases and lack of monitoring.
+
+Timeline:
+- Initial exposure detected
+- No authentication on services
+- Data indexed publicly
+
+Lessons learned:
+Security is a process, not a product.`
 }));
 
-/* TUTORIALS */
 const tutorials=[
-{title:"Linux Server Hardening",content:"Disable unused services, enforce firewall rules, SSH keys only, automatic updates, audit logs."},
-{title:"OSINT Fundamentals",content:"DNS analysis, metadata extraction, breach correlation, public intelligence sources."},
-{title:"Web Security Basics",content:"XSS, CSRF, input validation, CSP headers and secure cookies."},
-{title:"Cloud Misconfiguration",content:"Public buckets, exposed IAM keys, insecure APIs and logging gaps."}
+{title:"Linux Server Hardening",
+content:"Disable unused services, enforce firewall rules, SSH keys only, IDS, audit logs, automatic updates."},
+{title:"OSINT Fundamentals",
+content:"DNS, WHOIS, metadata extraction, breach correlation, public intelligence techniques."},
+{title:"Web Security Basics",
+content:"XSS, CSRF, input validation, CSP headers, secure cookies, HTTPS enforcement."},
+{title:"Cloud Security",
+content:"IAM hygiene, private buckets, logging, alerting and least privilege."}
 ];
 
-/* RENDER NEWS */
-newsGrid.innerHTML=news.map(e=>`
+/* RENDER */
+function render(){
+let q=search.value.toLowerCase();
+let s=sort.value;
+let data=[...news].filter(e=>(e.title+e.content).toLowerCase().includes(q));
+if(s==="alpha")data.sort((a,b)=>a.title.localeCompare(b.title));
+if(s==="date")data.sort((a,b)=>b.date.localeCompare(a.date));
+if(s==="tag")data.sort((a,b)=>a.tags.localeCompare(b.tags));
+newsGrid.innerHTML=data.map(e=>`
 <div class="card" onclick="openNews(e)">
 <h3>${e.title}</h3>
 <div class="meta">${e.date}</div>
 <div class="tags">${e.tags}</div>
 </div>`).join("");
+}
+render();
 
 function openNews(e){
 const d=document.createElement("div");
@@ -170,7 +196,7 @@ document.body.appendChild(d);
 d.scrollIntoView({behavior:"smooth"});
 }
 
-/* TUTORIAL ACCORDION */
+/* TUTORIALS */
 tutorialList.innerHTML=tutorials.map(t=>`
 <div class="accordion">
 <h3 onclick="this.nextElementSibling.style.display=
@@ -186,24 +212,33 @@ document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active")
 event.target.classList.add("active");
 }
 
-/* HACKERTYPER REAL CODE */
-const codeLines=[
-"if (socket.connect(target)) {",
-"SELECT * FROM users WHERE admin=1;",
-"iptables -A INPUT -p tcp --dport 22 -j DROP",
-"for (int i = 0; i < buffer.length; i++) {",
-"ssh-keygen -t ed25519",
-"curl -X POST https://api/login",
-"const fs = require('fs');",
-"chmod 600 ~/.ssh/authorized_keys",
-"try { authenticate(); } catch(e) {}",
-"systemctl restart firewall"
-];
+/* FAKE TERMINAL */
+const term=document.getElementById("terminal");
+const cmd=document.getElementById("cmd");
 
-document.addEventListener("keydown",()=>{
-terminal.textContent+=codeLines[Math.random()*codeLines.length|0]+"\n";
-terminal.scrollTop=terminal.scrollHeight;
+cmd.addEventListener("keydown",e=>{
+if(e.key==="Enter"){
+let c=cmd.value;
+term.innerHTML+=`\n[faketerminal@archive]$ ${c}\n`;
+cmd.value="";
+term.innerHTML+=run(c);
+term.innerHTML+=`\n[faketerminal@archive]$ `;
+cmd.focus();
+}
 });
+
+function run(c){
+switch(c){
+case "ls": return "news  tutorials  blog  archive.txt";
+case "pwd": return "/home/archive";
+case "whoami": return "archive";
+case "uname -a": return "Linux archive 6.1.0 x86_64";
+case "cat readme.txt": return "Private digital archive. Educational only.";
+case "help": return "ls pwd whoami uname -a cat readme.txt clear";
+case "clear": term.innerHTML="[faketerminal@archive]$ "; return "";
+default: return "command not found";
+}
+}
 </script>
 </body>
 </html>
