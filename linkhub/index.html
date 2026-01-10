@@ -1,1 +1,117 @@
-<h1>WAIT! OUR LINKTREE IS MADE BUT GITHUB IS PUBLISHING LONGWAY</h1>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HACKTR.EE</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: "Courier New", monospace;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle at top, #0a0f0a, #000000);
+      color: #00ff88;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 32px 24px 24px;
+      text-align: center;
+      border: 1px solid #00ff88;
+      box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2.4rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 8px #00ff88;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      margin-bottom: 28px;
+    }
+
+    .link {
+      display: block;
+      margin: 14px 0;
+      padding: 14px 12px;
+      text-decoration: none;
+      color: #00ff88;
+      border: 1px solid #00ff88;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, rgba(0,255,136,0.25), transparent);
+      transition: left 0.4s ease;
+    }
+
+    .link:hover::before {
+      left: 100%;
+    }
+
+    .link:hover {
+      background: rgba(0, 255, 136, 0.08);
+      box-shadow: 0 0 12px rgba(0, 255, 136, 0.5);
+      transform: translateY(-2px);
+    }
+
+    footer {
+      margin-top: 32px;
+      font-size: 0.75rem;
+      opacity: 0.7;
+    }
+
+    footer a {
+      color: #00ff88;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HACKTR.EE</h1>
+    <div class="subtitle">personal hacker hub</div>
+
+    <a class="link" href="https://hackerarchives.github.io/learn" target="_blank">
+      TEACHHUB
+    </a>
+
+    <a class="link" href="https://linktr.ee/hackarchives" target="_blank">
+      LINKTR.EE
+    </a>
+
+    <a class="link" href="https://hackerarchive.github.io" target="_blank">
+      SITE
+    </a>
+
+    <footer>
+      © 2026 Gabriel Krup. <a href="https://hackarchives.github" target="_blank">hackarchives.github</a>
+    </footer>
+  </div>
+</body>
+</html>
