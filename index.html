@@ -24,43 +24,20 @@ h1{color:#00ffaa;font-size:3rem}
 padding:8px 14px;border-radius:10px;cursor:pointer}
 .nav button.active{background:rgba(0,255,170,.2)}
 
-.controls{display:flex;gap:15px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-input,select{
-background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
-padding:10px;border-radius:10px
-}
-
 .section{display:none;max-width:1200px;margin:40px auto;padding:0 20px}
 .section.active{display:block}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
 .card{background:rgba(0,0,0,.65);border:1px solid rgba(0,255,170,.3);
-border-radius:16px;padding:22px;cursor:pointer}
-.card h3{color:#00ffaa}
+border-radius:16px;padding:22px}
+
 .meta{font-size:.75rem;color:#7dddc1;margin-top:6px}
 .tags{font-size:.7rem;color:#00ffaa;margin-top:8px}
 
-.details{
-max-width:1000px;margin:60px auto;padding:40px;
-background:rgba(0,0,0,.92);
-border-radius:18px;border:1px solid rgba(0,255,170,.35);
-display:none
-}
-.details.active{display:block}
-
 /* ACCORDION */
-.accordion{border:1px solid rgba(0,255,170,.3);border-radius:12px;margin-bottom:15px}
+.accordion{border:1px solid rgba(0,255,170,.3);border-radius:14px}
 .accordion h3{padding:15px;color:#00ffaa;cursor:pointer}
-.accordion p{padding:0 15px 15px;display:none;line-height:1.9}
-
-/* TERMINAL */
-#terminal{
-background:black;border:1px solid rgba(0,255,170,.4);
-border-radius:14px;padding:20px;
-color:#00ffaa;min-height:420px;
-white-space:pre-wrap;font-size:.9rem
-}
-#cmd{outline:none;border:none;background:black;color:#00ffaa;width:100%}
+.accordion .content{display:none;padding:20px}
 
 footer{text-align:center;color:#666;margin-bottom:30px}
 </style>
@@ -82,47 +59,87 @@ footer{text-align:center;color:#666;margin-bottom:30px}
 <button onclick="switchTab('blog')">BLOG</button>
 <button onclick="switchTab('tutorials')">TUTORIALS</button>
 <button onclick="switchTab('terminal')">[faketerminal@archive]$</button>
-</div>
-
-<div class="controls">
-<input id="search" placeholder="search title or content..." onkeyup="render()">
-<select id="sort" onchange="render()">
-<option value="date">sort by date</option>
-<option value="alpha">sort A-Z</option>
-<option value="tag">sort by hashtag</option>
-</select>
+<button onclick="switchTab('games')">GAMES</button>
 </div>
 </div>
 
+<!-- NEWS -->
 <section id="news" class="section active">
-<div class="grid" id="newsGrid"></div>
+<div class="grid">
+<div class="card">
+<h3>Archived Cyber Incident</h3>
+<div class="meta">2026</div>
+<p>Multiple exposed services due to misconfiguration.</p>
+</div>
+</div>
 </section>
 
+<!-- BLOG -->
 <section id="blog" class="section">
-<div class="details active">
+<div class="card">
 <h2>2026 not affiliated by Anonymous</h2>
-<div class="meta">private archive page</div>
-<p style="margin-top:25px;line-height:1.9">
-This website is a private and independent archive documenting cybersecurity incidents,
-misconfigurations, underground research and digital failures.<br><br>
-
-This project is NOT affiliated with Anonymous or any hacktivist group.
-It exists for educational and archival purposes only.<br><br>
-
-Most breaches are caused by negligence, not elite hacking.
-This archive documents what others try to forget.
+<p style="margin-top:20px;line-height:1.9">
+Private archive documenting cybersecurity incidents, misconfigurations and underground digital culture.
+This project is NOT affiliated with Anonymous or any organization.
 </p>
 </div>
 </section>
 
+<!-- TUTORIALS -->
 <section id="tutorials" class="section">
-<div id="tutorialList"></div>
+<div class="accordion">
+<h3 onclick="toggle(this)">Linux Server Hardening</h3>
+<div class="content">
+Disable unused services, use SSH keys, firewall rules, IDS and regular audits.
+</div>
+</div>
 </section>
 
+<!-- TERMINAL -->
 <section id="terminal" class="section">
-<div id="terminal">
-[faketerminal@archive]$ <input id="cmd" autofocus>
+<div class="card">
+[faketerminal@archive]$ fake bash terminal
 </div>
+</section>
+
+<!-- GAMES -->
+<section id="games" class="section">
+
+<div class="accordion">
+<h3 onclick="toggle(this)">CS 1.6</h3>
+
+<div class="content">
+
+<div class="card">
+<h3>AK47 GALAXY PAINT</h3>
+<div class="meta">Counter-Strike 1.6 • Weapon Skin</div>
+<div class="tags">#cs16 #ak47 #skin</div>
+
+<p style="margin-top:15px;line-height:1.8">
+Custom AK-47 Galaxy Paint skin for Counter-Strike 1.6.
+Visual mod only. Archive release.
+</p>
+
+<a href="ak47-galaxy-paint.rar"
+download
+style="
+display:inline-block;
+margin-top:18px;
+padding:10px 20px;
+border:1px solid rgba(0,255,170,.6);
+border-radius:12px;
+color:#00ffaa;
+text-decoration:none;
+box-shadow:0 0 20px rgba(0,255,170,.3);
+">
+AK47 GALAXY PAINT (DOWNLOAD)
+</a>
+
+</div>
+
+</div>
+</div>
+
 </section>
 
 <footer>© 2026 <span style="color:#00ffaa">hackerarchive.github</span></footer>
@@ -133,76 +150,17 @@ const c=document.getElementById("matrix"),x=c.getContext("2d");
 function r(){c.width=innerWidth;c.height=innerHeight}r();
 const ch="01ABCDEF#$%&@",fs=14;
 let cols=Math.floor(c.width/fs),drops=Array(cols).fill(1);
-setInterval(()=>{x.fillStyle="rgba(0,0,0,.08)";
+setInterval(()=>{
+x.fillStyle="rgba(0,0,0,.08)";
 x.fillRect(0,0,c.width,c.height);
-x.fillStyle="#00ffaa";x.font=fs+"px monospace";
-drops.forEach((d,i)=>{x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
-if(d*fs>c.height&&Math.random()>.98)drops[i]=0;drops[i]++})},50);
-
-/* DATA */
-const news=[...Array(20)].map((_,i)=>({
-title:`Archived Cyber Incident #${i+1}`,
-date:`2026-01-${String(i+1).padStart(2,"0")}`,
-tags:"#databreach #cybersecurity",
-content:`FULL REPORT #${i+1}
-
-This incident documents exposed infrastructure, misconfigured services,
-open databases and lack of monitoring.
-
-Timeline:
-- Initial exposure detected
-- No authentication on services
-- Data indexed publicly
-
-Lessons learned:
-Security is a process, not a product.`
-}));
-
-const tutorials=[
-{title:"Linux Server Hardening",
-content:"Disable unused services, enforce firewall rules, SSH keys only, IDS, audit logs, automatic updates."},
-{title:"OSINT Fundamentals",
-content:"DNS, WHOIS, metadata extraction, breach correlation, public intelligence techniques."},
-{title:"Web Security Basics",
-content:"XSS, CSRF, input validation, CSP headers, secure cookies, HTTPS enforcement."},
-{title:"Cloud Security",
-content:"IAM hygiene, private buckets, logging, alerting and least privilege."}
-];
-
-/* RENDER */
-function render(){
-let q=search.value.toLowerCase();
-let s=sort.value;
-let data=[...news].filter(e=>(e.title+e.content).toLowerCase().includes(q));
-if(s==="alpha")data.sort((a,b)=>a.title.localeCompare(b.title));
-if(s==="date")data.sort((a,b)=>b.date.localeCompare(a.date));
-if(s==="tag")data.sort((a,b)=>a.tags.localeCompare(b.tags));
-newsGrid.innerHTML=data.map(e=>`
-<div class="card" onclick="openNews(e)">
-<h3>${e.title}</h3>
-<div class="meta">${e.date}</div>
-<div class="tags">${e.tags}</div>
-</div>`).join("");
-}
-render();
-
-function openNews(e){
-const d=document.createElement("div");
-d.className="details active";
-d.innerHTML=`<h2>${e.title}</h2>
-<div class="meta">${e.date} • ${e.tags}</div>
-<p style="margin-top:25px;line-height:1.9">${e.content}</p>`;
-document.body.appendChild(d);
-d.scrollIntoView({behavior:"smooth"});
-}
-
-/* TUTORIALS */
-tutorialList.innerHTML=tutorials.map(t=>`
-<div class="accordion">
-<h3 onclick="this.nextElementSibling.style.display=
-this.nextElementSibling.style.display==='block'?'none':'block'">${t.title}</h3>
-<p>${t.content}</p>
-</div>`).join("");
+x.fillStyle="#00ffaa";
+x.font=fs+"px monospace";
+drops.forEach((d,i)=>{
+x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
+if(d*fs>c.height&&Math.random()>.98)drops[i]=0;
+drops[i]++;
+});
+},50);
 
 /* NAV */
 function switchTab(id){
@@ -212,32 +170,10 @@ document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active")
 event.target.classList.add("active");
 }
 
-/* FAKE TERMINAL */
-const term=document.getElementById("terminal");
-const cmd=document.getElementById("cmd");
-
-cmd.addEventListener("keydown",e=>{
-if(e.key==="Enter"){
-let c=cmd.value;
-term.innerHTML+=`\n[faketerminal@archive]$ ${c}\n`;
-cmd.value="";
-term.innerHTML+=run(c);
-term.innerHTML+=`\n[faketerminal@archive]$ `;
-cmd.focus();
-}
-});
-
-function run(c){
-switch(c){
-case "ls": return "news  tutorials  blog  archive.txt";
-case "pwd": return "/home/archive";
-case "whoami": return "archive";
-case "uname -a": return "Linux archive 6.1.0 x86_64";
-case "cat readme.txt": return "Private digital archive. Educational only.";
-case "help": return "ls pwd whoami uname -a cat readme.txt clear";
-case "clear": term.innerHTML="[faketerminal@archive]$ "; return "";
-default: return "command not found";
-}
+/* ACCORDION */
+function toggle(el){
+const c = el.nextElementSibling;
+c.style.display = c.style.display === "block" ? "none" : "block";
 }
 </script>
 </body>
