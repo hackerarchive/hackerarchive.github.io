@@ -1,98 +1,197 @@
-<!-- GAMES -->
-<section id="games" class="section">
-
-<div class="accordion">
-  <h3 onclick="toggle(this)">CS 1.6</h3>
-  <div class="content">
-
-    <div class="card">
-      <h3>AK47 GALAXY PAINT</h3>
-      <div class="meta">Counter-Strike 1.6 • Weapon Skin</div>
-      <div class="tags">#cs16 #ak47 #skin</div>
-      <p>Custom AK-47 Galaxy Paint skin for CS 1.6. Visual mod only.</p>
-      <a href="ak47-galaxy-paint.rar" download class="download-btn">DOWNLOAD</a>
-    </div>
-
-    <div class="card">
-      <h3>M4A1 NEON STRIKE</h3>
-      <div class="meta">Counter-Strike 1.6 • Weapon Skin</div>
-      <div class="tags">#cs16 #m4a1 #skin</div>
-      <p>Custom M4A1 Neon Strike skin for CS 1.6. Visual mod only.</p>
-      <a href="m4a1-neon-strike.rar" download class="download-btn">DOWNLOAD</a>
-    </div>
-
-  </div>
-</div>
-
-<div class="accordion">
-  <h3 onclick="toggle(this)">Half-Life 2</h3>
-  <div class="content">
-
-    <div class="card">
-      <h3>Gravity Gun Upgrade</h3>
-      <div class="meta">Half-Life 2 • Weapon Mod</div>
-      <div class="tags">#hl2 #gravitygun #mod</div>
-      <p>Enhanced Gravity Gun mod with visual effects and sound enhancements.</p>
-      <a href="gravity-gun-upgrade.rar" download class="download-btn">DOWNLOAD</a>
-    </div>
-
-    <div class="card">
-      <h3>Combine Elite Skin</h3>
-      <div class="meta">Half-Life 2 • Skin Pack</div>
-      <div class="tags">#hl2 #combine #skin</div>
-      <p>Elite Combine soldier skin pack for HL2.</p>
-      <a href="combine-elite-skin.rar" download class="download-btn">DOWNLOAD</a>
-    </div>
-
-  </div>
-</div>
-
-<div class="accordion">
-  <h3 onclick="toggle(this)">GTA: San Andreas</h3>
-  <div class="content">
-
-    <div class="card">
-      <h3>Police Car Pack</h3>
-      <div class="meta">GTA: SA • Vehicle Mod</div>
-      <div class="tags">#gta-sa #vehicles #mod</div>
-      <p>Custom police vehicles with upgraded textures.</p>
-      <a href="police-car-pack.rar" download class="download-btn">DOWNLOAD</a>
-    </div>
-
-    <div class="card">
-      <h3>Weapon Pack V2</h3>
-      <div class="meta">GTA: SA • Weapon Mod</div>
-      <div class="tags">#gta-sa #weapons #mod</div>
-      <p>Complete weapon replacement pack for GTA: San Andreas.</p>
-      <a href="weapon-pack-v2.rar" download class="download-btn">DOWNLOAD</a>
-    </div>
-
-  </div>
-</div>
-
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>hackerarchive.github</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
-.download-btn{
-display:inline-block;
-margin-top:10px;
-padding:10px 18px;
-border:1px solid rgba(0,255,170,.6);
-border-radius:10px;
-color:#00ffaa;
-text-decoration:none;
-box-shadow:0 0 15px rgba(0,255,170,.3);
-transition:0.2s;
-}
-.download-btn:hover{
-background:rgba(0,255,170,.1);
-box-shadow:0 0 25px rgba(0,255,170,.5);
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'JetBrains Mono',monospace}
+body{background:black;color:#e6e6e6}
+#matrix{position:fixed;inset:0;z-index:-1}
+
+.header{max-width:1200px;margin:40px auto;padding:40px;background:rgba(0,0,0,.85);border:1px solid rgba(0,255,170,.35);border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
+h1{color:#00ffaa;font-size:3rem}
+.subtitle{color:#9ef5d5;margin:15px 0}
+
+.nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:25px}
+.nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);padding:8px 14px;border-radius:10px;cursor:pointer}
+.nav button.active{background:rgba(0,255,170,.25)}
+
+.searchbar{max-width:600px;margin:30px auto;display:flex;gap:10px}
+.searchbar input,.searchbar select{flex:1;background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);padding:8px;border-radius:8px}
+
+.section{display:none;max-width:1200px;margin:30px auto;padding:0 20px}
+.section.active{display:block}
+
+.card{background:rgba(0,0,0,.7);border:1px solid rgba(0,255,170,.3);border-radius:16px;padding:22px;margin-bottom:20px}
+.card h3{color:#00ffaa}
+.meta{font-size:.75rem;color:#7dddc1;margin-top:5px}
+.tags{font-size:.7rem;color:#00ffaa;margin-top:6px}
+
+.accordion h3{cursor:pointer}
+.content{display:none;margin-top:15px;line-height:1.9}
+
+.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none}
+
+#terminal{background:black;border:1px solid rgba(0,255,170,.4);border-radius:14px;padding:20px;min-height:400px;white-space:pre-wrap;color:#00ffaa}
+
+footer{text-align:center;color:#666;margin:40px}
 </style>
+</head>
+
+<body>
+<canvas id="matrix"></canvas>
+
+<div class="header">
+<h1>hackerarchive.github</h1>
+<div class="subtitle">PRIVATE DIGITAL ARCHIVE • 2026</div>
+
+<div class="nav">
+<button class="active" onclick="switchTab('news')">NEWS</button>
+<button onclick="switchTab('blog')">BLOG</button>
+<button onclick="switchTab('tutorials')">TUTORIALS</button>
+<button onclick="switchTab('terminal')">[hackertyper@archive]$</button>
+<button onclick="switchTab('games')">GAMES</button>
+</div>
+</div>
+
+<div class="searchbar">
+<input id="searchInput" placeholder="search by title, tag, content">
+<select id="sortSelect" onchange="sortItems()">
+<option value="az">A–Z</option>
+<option value="za">Z–A</option>
+</select>
+</div>
+
+<!-- NEWS -->
+<section id="news" class="section active searchable">
+<div class="card accordion">
+<h3 onclick="toggle(this)">Massive Game Mod Leak</h3>
+<div class="meta">2026 • #mods #leak</div>
+<div class="content">
+Full archive of unreleased mods leaked from private repositories. Includes experimental assets and internal tools.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Legacy Systems Exploit</h3>
+<div class="meta">2026 • #exploit #zero-day</div>
+<div class="content">
+Zero-day actively abused against outdated enterprise infrastructure worldwide.
+</div>
+</div>
+</section>
+
+<!-- BLOG -->
+<section id="blog" class="section searchable">
+<div class="card">
+<h3>2026 not affiliated by Anonymous</h3>
+<div class="content" style="display:block">
+This is a private archive documenting cybersecurity incidents, underground digital culture, game modding and OSINT.
+NOT affiliated with Anonymous or any organization. Educational & archival only.
+</div>
+</div>
+</section>
+
+<!-- TUTORIALS -->
+<section id="tutorials" class="section searchable">
+<div class="card accordion">
+<h3 onclick="toggle(this)">Linux Hardening Guide</h3>
+<div class="tags">#linux #security</div>
+<div class="content">
+Disable root login, SSH keys only, firewall, auditd, automatic updates, IDS systems.
+</div>
+</div>
+
+<div class="card accordion">
+<h3 onclick="toggle(this)">Web Pentest Basics</h3>
+<div class="tags">#web #xss #sql</div>
+<div class="content">
+Input validation, CSP headers, session security, SQL injection prevention.
+</div>
+</div>
+</section>
+
+<!-- GAMES -->
+<section id="games" class="section searchable">
+<div class="card accordion">
+<h3 onclick="toggle(this)">CS 1.6</h3>
+<div class="content">
+<h3>AK47 GALAXY PAINT</h3>
+<div class="tags">#cs16 #ak47 #skin</div>
+<p>Custom AK-47 Galaxy Paint skin for Counter-Strike 1.6</p>
+<a href="ak47-galaxy-paint.rar" download class="download">DOWNLOAD</a>
+</div>
+</div>
+</section>
+
+<!-- TERMINAL -->
+<section id="terminal" class="section">
+<div id="terminal">[hackertyper@archive]$ </div>
+</section>
+
+<footer>© 2026 hackerarchive.github</footer>
 
 <script>
-function toggle(el){
-  const content = el.nextElementSibling;
-  content.style.display = content.style.display === "block" ? "none" : "block";
+/* MATRIX */
+const c=document.getElementById("matrix"),x=c.getContext("2d");
+function r(){c.width=innerWidth;c.height=innerHeight}r();
+const ch="01ABCDEF#$%&@",fs=14;
+let cols=Math.floor(c.width/fs),drops=Array(cols).fill(1);
+setInterval(()=>{
+x.fillStyle="rgba(0,0,0,.08)";
+x.fillRect(0,0,c.width,c.height);
+x.fillStyle="#00ffaa";x.font=fs+"px monospace";
+drops.forEach((d,i)=>{
+x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
+if(d*fs>c.height&&Math.random()>.98)drops[i]=0;
+drops[i]++;
+});
+},50);
+
+/* NAV */
+function switchTab(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
+event.target.classList.add("active");
 }
+
+/* ACCORDION */
+function toggle(el){
+const c=el.nextElementSibling;
+c.style.display=c.style.display==="block"?"none":"block";
+}
+
+/* SEARCH */
+document.getElementById("searchInput").addEventListener("input",()=>{
+const q=searchInput.value.toLowerCase();
+document.querySelectorAll(".searchable .card").forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none";
+});
+});
+
+/* SORT */
+function sortItems(){
+const sec=document.querySelector(".section.active");
+if(!sec)return;
+const cards=[...sec.querySelectorAll(".card")];
+cards.sort((a,b)=>{
+return sortSelect.value==="az"
+?a.innerText.localeCompare(b.innerText)
+:b.innerText.localeCompare(a.innerText);
+});
+cards.forEach(c=>sec.appendChild(c));
+}
+
+/* HACKERTYPER */
+document.addEventListener("keydown",e=>{
+if(!document.getElementById("terminal").parentElement.classList.contains("active"))return;
+document.getElementById("terminal").innerText+=
+"sudo exploit --target legacy_system --force\n";
+});
 </script>
+</body>
+</html>
