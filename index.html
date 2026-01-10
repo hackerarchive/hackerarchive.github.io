@@ -33,9 +33,26 @@ h1{color:#00ffaa;font-size:3rem}
 .accordion h3{cursor:pointer}
 .content{display:none;margin-top:15px;line-height:1.9}
 
-.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none;box-shadow:0 0 15px rgba(0,255,170,.3)}
+.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none}
 
-#terminal{background:black;border:1px solid rgba(0,255,170,.4);border-radius:14px;padding:20px;min-height:420px;white-space:pre-wrap;color:#00ffaa}
+.calc input, .calc select{
+width:100%;margin:6px 0;padding:8px;
+background:black;color:#00ffaa;
+border:1px solid rgba(0,255,170,.4);border-radius:8px
+}
+
+.calc button{
+margin-top:10px;padding:8px 14px;
+background:black;color:#00ffaa;
+border:1px solid rgba(0,255,170,.6);
+border-radius:8px;cursor:pointer
+}
+
+#terminal{
+background:black;border:1px solid rgba(0,255,170,.4);
+border-radius:14px;padding:20px;
+min-height:420px;white-space:pre-wrap;color:#00ffaa
+}
 
 footer{text-align:center;color:#666;margin:40px}
 </style>
@@ -54,6 +71,7 @@ footer{text-align:center;color:#666;margin:40px}
 <button onclick="switchTab('tutorials')">TUTORIALS</button>
 <button onclick="switchTab('terminal')">[hackertyper@archive]$</button>
 <button onclick="switchTab('games')">GAMES</button>
+<button onclick="switchTab('calc')">CALCULATOR</button>
 </div>
 </div>
 
@@ -71,15 +89,7 @@ footer{text-align:center;color:#666;margin:40px}
 <h3 onclick="toggle(this)">Massive Game Mod Leak</h3>
 <div class="meta">2026 • #mods #leak</div>
 <div class="content">
-A full archive of unreleased mods surfaced on underground forums, including experimental assets and developer-only tools.
-</div>
-</div>
-
-<div class="card accordion">
-<h3 onclick="toggle(this)">Legacy Systems Zero-Day</h3>
-<div class="meta">2026 • #exploit #zero-day</div>
-<div class="content">
-A zero-day exploit targeting outdated enterprise systems is being actively abused in the wild.
+Archive of unreleased mods leaked from private repositories.
 </div>
 </div>
 </section>
@@ -89,8 +99,7 @@ A zero-day exploit targeting outdated enterprise systems is being actively abuse
 <div class="card">
 <h3>2026 not affiliated by Anonymous</h3>
 <div class="content" style="display:block">
-Private, independent archive documenting cybersecurity incidents, game modding and underground digital culture.
-NOT affiliated with Anonymous or any organization. Educational & archival purposes only.
+Private archive. Not affiliated with Anonymous. Educational & archival purposes only.
 </div>
 </div>
 </section>
@@ -98,18 +107,9 @@ NOT affiliated with Anonymous or any organization. Educational & archival purpos
 <!-- TUTORIALS -->
 <section id="tutorials" class="section searchable">
 <div class="card accordion">
-<h3 onclick="toggle(this)">Linux Server Hardening</h3>
-<div class="tags">#linux #security</div>
+<h3 onclick="toggle(this)">Linux Hardening</h3>
 <div class="content">
-Disable root login, SSH keys only, firewall rules, auditd, IDS, automatic updates and monitoring.
-</div>
-</div>
-
-<div class="card accordion">
-<h3 onclick="toggle(this)">Web Security Basics</h3>
-<div class="tags">#web #xss #sql</div>
-<div class="content">
-Input validation, CSP headers, secure cookies, CSRF protection and authentication hygiene.
+SSH keys only, firewall, auditd, IDS, logs.
 </div>
 </div>
 </section>
@@ -119,27 +119,48 @@ Input validation, CSP headers, secure cookies, CSRF protection and authenticatio
 <div class="card accordion">
 <h3 onclick="toggle(this)">CS 1.6</h3>
 <div class="content">
-
-<h3>AK47 GALAXY PAINT</h3>
-<div class="tags">#cs16 #ak47 #skin</div>
-<p>Custom AK-47 Galaxy Paint skin for Counter-Strike 1.6.</p>
-<a href="ak47-galaxy-paint.rar" download class="download">DOWNLOAD</a>
-
-<hr style="margin:30px 0;border:0;border-top:1px solid rgba(0,255,170,.3)">
-
-<h3>M4A1 PREPPY CAMO</h3>
-<div class="tags">#cs16 #m4a1 #skin #camo</div>
-<p>Custom M4A1 Preppy Camo skin for Counter-Strike 1.6.</p>
-<a href="m4a1_preppycamo.rar" download class="download">DOWNLOAD</a>
-
-<hr style="margin:30px 0;border:0;border-top:1px solid rgba(0,255,170,.3)">
-
-<h3>AWP CAMO</h3>
-<div class="tags">#cs16 #awp #sniper #camo</div>
-<p>Custom AWP Camo skin for Counter-Strike 1.6.</p>
-<a href="awpcamo.rar" download class="download">DOWNLOAD</a>
-
+<p>AK47 GALAXY PAINT</p>
+<a class="download" href="ak47-galaxy-paint.rar" download>DOWNLOAD</a>
+<hr>
+<p>M4A1 PREPPY CAMO</p>
+<a class="download" href="m4a1_preppycamo.rar" download>DOWNLOAD</a>
+<hr>
+<p>AWP CAMO</p>
+<a class="download" href="awpcamo.rar" download>DOWNLOAD</a>
 </div>
+</div>
+</section>
+
+<!-- CALCULATOR -->
+<section id="calc" class="section">
+<div class="card calc">
+<h3>Hacker Calculator / Converter</h3>
+
+<input id="numInput" placeholder="enter number">
+<select id="baseSelect">
+<option value="10">DECIMAL</option>
+<option value="16">HEX</option>
+<option value="2">BINARY</option>
+<option value="8">OCTAL</option>
+</select>
+
+<button onclick="convert()">CONVERT</button>
+
+<p id="calcResult" style="margin-top:15px;line-height:1.8"></p>
+
+<hr style="margin:20px 0">
+
+<input id="a" placeholder="A">
+<select id="op">
+<option>+</option>
+<option>-</option>
+<option>*</option>
+<option>/</option>
+</select>
+<input id="b" placeholder="B">
+
+<button onclick="math()">CALCULATE</button>
+<p id="mathResult"></p>
 </div>
 </section>
 
@@ -193,18 +214,40 @@ c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none";
 function sortItems(){
 const sec=document.querySelector(".section.active");
 if(!sec)return;
-const cards=[...sec.querySelectorAll(".card")];
-cards.sort((a,b)=>{
-return sortSelect.value==="az"
+[...sec.querySelectorAll(".card")]
+.sort((a,b)=>sortSelect.value==="az"
 ?a.innerText.localeCompare(b.innerText)
-:b.innerText.localeCompare(a.innerText);
-});
-cards.forEach(c=>sec.appendChild(c));
+:b.innerText.localeCompare(a.innerText))
+.forEach(c=>sec.appendChild(c));
+}
+
+/* CALCULATOR */
+function convert(){
+const n=document.getElementById("numInput").value;
+const b=parseInt(baseSelect.value);
+const v=parseInt(n,b);
+calcResult.innerHTML=
+"DEC: "+v+
+"<br>HEX: 0x"+v.toString(16)+
+"<br>BIN: "+v.toString(2)+
+"<br>OCT: "+v.toString(8);
+}
+
+function math(){
+const A=parseFloat(a.value),B=parseFloat(b.value);
+let r;
+switch(op.value){
+case '+':r=A+B;break;
+case '-':r=A-B;break;
+case '*':r=A*B;break;
+case '/':r=A/B;break;
+}
+mathResult.innerText="RESULT: "+r;
 }
 
 /* HACKERTYPER */
 document.addEventListener("keydown",()=>{
-if(!document.getElementById("terminal").parentElement.classList.contains("active"))return;
+if(!terminal.parentElement.classList.contains("active"))return;
 terminal.innerText+="sudo exploit --target legacy_system --force\n";
 });
 </script>
