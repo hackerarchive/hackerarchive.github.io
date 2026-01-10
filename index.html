@@ -11,57 +11,50 @@
 body{background:black;color:#e6e6e6}
 #matrix{position:fixed;inset:0;z-index:-1}
 
-/* HEADER */
 .header{max-width:1200px;margin:60px auto;padding:40px;
-background:rgba(0,0,0,.82);border:1px solid rgba(0,255,170,.35);
+background:rgba(0,0,0,.85);border:1px solid rgba(0,255,170,.35);
 border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
 h1{color:#00ffaa;font-size:3rem}
 .subtitle{color:#9ef5d5;margin:15px 0}
 .linktree a{color:#00ffaa;text-decoration:none;border-bottom:1px dashed rgba(0,255,170,.5)}
 
-.nav{display:flex;justify-content:center;gap:12px;margin-top:25px;flex-wrap:wrap}
-.nav button{
-background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
-padding:8px 14px;border-radius:10px;cursor:pointer
-}
+.nav{display:flex;justify-content:center;gap:10px;margin-top:25px;flex-wrap:wrap}
+.nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
+padding:8px 14px;border-radius:10px;cursor:pointer}
 .nav button.active{background:rgba(0,255,170,.2)}
 
-.controls{display:flex;gap:15px;justify-content:center;margin-top:20px;flex-wrap:wrap}
-input,select{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
-padding:10px;border-radius:10px}
-
-/* SECTIONS */
 .section{display:none;max-width:1200px;margin:40px auto;padding:0 20px}
 .section.active{display:block}
 
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
-.card{
-background:rgba(0,0,0,.65);border:1px solid rgba(0,255,170,.3);
-border-radius:16px;padding:22px;cursor:pointer
-}
+.card{background:rgba(0,0,0,.65);border:1px solid rgba(0,255,170,.3);
+border-radius:16px;padding:22px;cursor:pointer}
 .card h3{color:#00ffaa}
-.meta{font-size:.75rem;color:#7dddc1;margin-top:5px}
+.meta{font-size:.75rem;color:#7dddc1;margin-top:6px}
 .tags{font-size:.7rem;color:#00ffaa;margin-top:8px}
 
-/* DETAILS */
 .details{
-max-width:1000px;margin:80px auto;padding:45px;
-background:rgba(0,0,0,.9);border-radius:18px;
-border:1px solid rgba(0,255,170,.35);display:none
+max-width:1000px;margin:60px auto;padding:40px;
+background:rgba(0,0,0,.92);
+border-radius:18px;border:1px solid rgba(0,255,170,.35);
+display:none
 }
 .details.active{display:block}
 
-/* TUTORIAL ACCORDION */
+/* ACCORDION */
 .accordion{border:1px solid rgba(0,255,170,.3);border-radius:12px;margin-bottom:15px}
 .accordion h3{padding:15px;color:#00ffaa;cursor:pointer}
-.accordion p{padding:0 15px 15px;display:none;line-height:1.8}
+.accordion p{padding:0 15px 15px;display:none;line-height:1.9}
 
 /* HACKERTYPER */
 #terminal{
 background:black;border:1px solid rgba(0,255,170,.4);
 border-radius:14px;padding:20px;
-color:#00ffaa;min-height:400px;
-white-space:pre-wrap;font-size:.9rem
+color:#00ffaa;min-height:420px;
+white-space:pre-wrap;font-size:.85rem
+}
+.disclaimer{
+font-size:.7rem;color:#7dddc1;margin-top:10px
 }
 
 footer{text-align:center;color:#666;margin-bottom:30px}
@@ -85,15 +78,6 @@ footer{text-align:center;color:#666;margin-bottom:30px}
 <button onclick="switchTab('tutorials')">TUTORIALS</button>
 <button onclick="switchTab('hackertyper')">[hackertyper@archive]$</button>
 </div>
-
-<div class="controls">
-<input id="search" placeholder="search title / content..." onkeyup="render()">
-<select id="sort" onchange="render()">
-<option value="date">sort: date</option>
-<option value="alpha">sort: A-Z</option>
-<option value="tag">sort: hashtag</option>
-</select>
-</div>
 </div>
 
 <!-- NEWS -->
@@ -107,14 +91,14 @@ footer{text-align:center;color:#666;margin-bottom:30px}
 <h2>2026 not affiliated by Anonymous</h2>
 <div class="meta">private archive page</div>
 <p style="margin-top:25px;line-height:1.9">
-This website is a private digital archive documenting cybersecurity incidents,
-misconfigurations, underground research and historical leaks.<br><br>
+This website is a private, independent archive documenting cybersecurity incidents,
+misconfigurations, underground research and historical digital leaks.<br><br>
 
-This project is <b>NOT affiliated with Anonymous</b> or any organization.
-It exists to preserve information, analyze failures and educate future defenders.<br><br>
+This project is <b>NOT affiliated with Anonymous</b>, hacktivist groups or any organization.
+It exists for archival, educational and analytical purposes only.<br><br>
 
-Data breaches do not begin with hackers — they begin with neglect.
-This archive records the consequences.
+Most breaches are not caused by elite hackers — but by ignored warnings,
+open systems and silent negligence. This archive records the evidence.
 </p>
 </div>
 </section>
@@ -127,7 +111,10 @@ This archive records the consequences.
 <!-- HACKERTYPER -->
 <section id="hackertyper" class="section">
 <div id="terminal"></div>
-<p class="meta" style="margin-top:10px">type anything…</p>
+<div class="disclaimer">
+Simulation only. Displays real programming and system code fragments randomly.
+Inspired by hackertyper.net. No real hacking is performed.
+</div>
 </section>
 
 <footer>© 2026 <span style="color:#00ffaa">hackerarchive.github</span></footer>
@@ -144,55 +131,50 @@ x.fillStyle="#00ffaa";x.font=fs+"px monospace";
 drops.forEach((d,i)=>{x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
 if(d*fs>c.height&&Math.random()>.98)drops[i]=0;drops[i]++})},50);
 
-/* DATA – 20 NEWS */
+/* NEWS DATA – 20 */
 const news=[...Array(20)].map((_,i)=>({
 title:`Archived Cyber Incident #${i+1}`,
 date:`2026-01-${String(i+1).padStart(2,"0")}`,
 tags:"#databreach #cybersecurity",
-content:"Archived report describing exposed systems, misconfigurations and security failures observed in the wild."
+content:`Detailed incident report #${i+1}.
+This archive entry documents exposed systems, misconfigured services,
+open databases and security failures observed in real-world environments.
+
+Analysis includes timeline reconstruction, probable attack vectors
+and lessons learned for defensive security teams.`
 }));
 
+/* TUTORIALS */
 const tutorials=[
-{title:"Linux Hardening",content:"Disable unused services, firewall rules, SSH keys, updates."},
-{title:"OSINT Basics",content:"DNS, metadata, breach analysis, public sources."},
-{title:"Web Security",content:"XSS, CSRF, input validation, CSP."},
-{title:"Cloud Misconfigurations",content:"Open buckets, IAM mistakes, exposed APIs."},
-{title:"CTF Learning Path",content:"Practice legally via labs and challenges."}
+{title:"Linux Server Hardening",content:"Disable unused services, enforce firewall rules, SSH keys only, automatic updates, audit logs."},
+{title:"OSINT Fundamentals",content:"DNS analysis, metadata extraction, breach correlation, public intelligence sources."},
+{title:"Web Security Basics",content:"XSS, CSRF, input validation, CSP headers and secure cookies."},
+{title:"Cloud Misconfiguration",content:"Public buckets, exposed IAM keys, insecure APIs and logging gaps."}
 ];
 
-/* RENDER */
-function render(){
-let q=search.value.toLowerCase();
-let s=sort.value;
-let data=[...news].filter(e=>(e.title+e.content).toLowerCase().includes(q));
-if(s==="alpha")data.sort((a,b)=>a.title.localeCompare(b.title));
-if(s==="date")data.sort((a,b)=>b.date.localeCompare(a.date));
-if(s==="tag")data.sort((a,b)=>a.tags.localeCompare(b.tags));
-
-newsGrid.innerHTML=data.map(e=>`
-<div class="card" onclick="open(e)">
+/* RENDER NEWS */
+newsGrid.innerHTML=news.map(e=>`
+<div class="card" onclick="openNews(e)">
 <h3>${e.title}</h3>
 <div class="meta">${e.date}</div>
 <div class="tags">${e.tags}</div>
 </div>`).join("");
-}
 
-/* DETAILS */
-function open(e){
+function openNews(e){
 const d=document.createElement("div");
 d.className="details active";
-d.innerHTML=`<h2>${e.title}</h2><div class="meta">${e.date} • ${e.tags}</div><p style="margin-top:25px">${e.content}</p>`;
+d.innerHTML=`<h2>${e.title}</h2>
+<div class="meta">${e.date} • ${e.tags}</div>
+<p style="margin-top:25px;line-height:1.9">${e.content}</p>`;
 document.body.appendChild(d);
 d.scrollIntoView({behavior:"smooth"});
 }
 
-/* TUTORIALS */
+/* TUTORIAL ACCORDION */
 tutorialList.innerHTML=tutorials.map(t=>`
 <div class="accordion">
 <h3 onclick="this.nextElementSibling.style.display=
-this.nextElementSibling.style.display==='block'?'none':'block'">
-${t.title}
-</h3>
+this.nextElementSibling.style.display==='block'?'none':'block'">${t.title}</h3>
 <p>${t.content}</p>
 </div>`).join("");
 
@@ -204,16 +186,24 @@ document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active")
 event.target.classList.add("active");
 }
 
-/* HACKERTYPER */
-const fakeCode=`root@archive:~# scanning network...
-ssh brute-force initiated
-bypassing firewall rules
-dumping memory blocks
-access granted
-`;
-document.addEventListener("keydown",()=>terminal.textContent+=fakeCode[Math.random()*fakeCode.length|0]);
+/* HACKERTYPER REAL CODE */
+const codeLines=[
+"if (socket.connect(target)) {",
+"SELECT * FROM users WHERE admin=1;",
+"iptables -A INPUT -p tcp --dport 22 -j DROP",
+"for (int i = 0; i < buffer.length; i++) {",
+"ssh-keygen -t ed25519",
+"curl -X POST https://api/login",
+"const fs = require('fs');",
+"chmod 600 ~/.ssh/authorized_keys",
+"try { authenticate(); } catch(e) {}",
+"systemctl restart firewall"
+];
 
-render();
+document.addEventListener("keydown",()=>{
+terminal.textContent+=codeLines[Math.random()*codeLines.length|0]+"\n";
+terminal.scrollTop=terminal.scrollHeight;
+});
 </script>
 </body>
 </html>
