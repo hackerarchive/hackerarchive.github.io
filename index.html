@@ -10,31 +10,60 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'JetBrains Mono',monospace}
 body{background:black;color:#e6e6e6}
 #matrix{position:fixed;inset:0;z-index:-1}
-.header{max-width:1100px;margin:70px auto;padding:40px;
-background:rgba(0,0,0,.8);border:1px solid rgba(0,255,170,.35);
+
+/* HEADER */
+.header{max-width:1200px;margin:60px auto;padding:40px;
+background:rgba(0,0,0,.82);border:1px solid rgba(0,255,170,.35);
 border-radius:18px;box-shadow:0 0 60px rgba(0,255,170,.25);text-align:center}
 h1{color:#00ffaa;font-size:3rem}
 .subtitle{color:#9ef5d5;margin:15px 0}
 .linktree a{color:#00ffaa;text-decoration:none;border-bottom:1px dashed rgba(0,255,170,.5)}
-.nav{display:flex;justify-content:center;gap:15px;margin-top:25px;flex-wrap:wrap}
-.nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
-padding:8px 16px;border-radius:10px;cursor:pointer}
+
+.nav{display:flex;justify-content:center;gap:12px;margin-top:25px;flex-wrap:wrap}
+.nav button{
+background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
+padding:8px 14px;border-radius:10px;cursor:pointer
+}
 .nav button.active{background:rgba(0,255,170,.2)}
-.controls{display:flex;gap:15px;justify-content:center;margin-top:25px;flex-wrap:wrap}
+
+.controls{display:flex;gap:15px;justify-content:center;margin-top:20px;flex-wrap:wrap}
 input,select{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);
 padding:10px;border-radius:10px}
+
+/* SECTIONS */
 .section{display:none;max-width:1200px;margin:40px auto;padding:0 20px}
 .section.active{display:block}
+
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px}
-.card{background:rgba(0,0,0,.65);border:1px solid rgba(0,255,170,.3);
-border-radius:16px;padding:22px;cursor:pointer}
+.card{
+background:rgba(0,0,0,.65);border:1px solid rgba(0,255,170,.3);
+border-radius:16px;padding:22px;cursor:pointer
+}
 .card h3{color:#00ffaa}
 .meta{font-size:.75rem;color:#7dddc1;margin-top:5px}
-.tags{margin-top:10px;font-size:.7rem;color:#00ffaa}
-.details{max-width:1000px;margin:80px auto;padding:45px;
-background:rgba(0,0,0,.85);border-radius:18px;
-border:1px solid rgba(0,255,170,.35);display:none}
+.tags{font-size:.7rem;color:#00ffaa;margin-top:8px}
+
+/* DETAILS */
+.details{
+max-width:1000px;margin:80px auto;padding:45px;
+background:rgba(0,0,0,.9);border-radius:18px;
+border:1px solid rgba(0,255,170,.35);display:none
+}
 .details.active{display:block}
+
+/* TUTORIAL ACCORDION */
+.accordion{border:1px solid rgba(0,255,170,.3);border-radius:12px;margin-bottom:15px}
+.accordion h3{padding:15px;color:#00ffaa;cursor:pointer}
+.accordion p{padding:0 15px 15px;display:none;line-height:1.8}
+
+/* HACKERTYPER */
+#terminal{
+background:black;border:1px solid rgba(0,255,170,.4);
+border-radius:14px;padding:20px;
+color:#00ffaa;min-height:400px;
+white-space:pre-wrap;font-size:.9rem
+}
+
 footer{text-align:center;color:#666;margin-bottom:30px}
 </style>
 </head>
@@ -44,7 +73,7 @@ footer{text-align:center;color:#666;margin-bottom:30px}
 
 <div class="header">
 <h1>hackerarchive.github</h1>
-<div class="subtitle">NEWS • BLOG • TUTORIALS • DIGITAL ARCHIVE</div>
+<div class="subtitle">PRIVATE DIGITAL ARCHIVE • 2026</div>
 
 <div class="linktree">
 <a href="https://linktr.ee/hackarchives" target="_blank">[ linktree@archive ]$</a>
@@ -54,10 +83,11 @@ footer{text-align:center;color:#666;margin-bottom:30px}
 <button class="active" onclick="switchTab('news')">NEWS</button>
 <button onclick="switchTab('blog')">BLOG</button>
 <button onclick="switchTab('tutorials')">TUTORIALS</button>
+<button onclick="switchTab('hackertyper')">[hackertyper@archive]$</button>
 </div>
 
 <div class="controls">
-<input id="search" placeholder="search title or content..." onkeyup="render()">
+<input id="search" placeholder="search title / content..." onkeyup="render()">
 <select id="sort" onchange="render()">
 <option value="date">sort: date</option>
 <option value="alpha">sort: A-Z</option>
@@ -66,14 +96,38 @@ footer{text-align:center;color:#666;margin-bottom:30px}
 </div>
 </div>
 
-<section id="news" class="section active"><div class="grid" id="newsGrid"></div></section>
-<section id="blog" class="section"><div class="grid" id="blogGrid"></div></section>
-<section id="tutorials" class="section"><div class="grid" id="tutorialGrid"></div></section>
+<!-- NEWS -->
+<section id="news" class="section active">
+<div class="grid" id="newsGrid"></div>
+</section>
 
-<section class="details" id="details">
-<h2 id="dTitle"></h2>
-<div class="meta" id="dMeta"></div>
-<p id="dContent" style="margin-top:25px;line-height:1.9"></p>
+<!-- BLOG -->
+<section id="blog" class="section">
+<div class="details active">
+<h2>2026 not affiliated by Anonymous</h2>
+<div class="meta">private archive page</div>
+<p style="margin-top:25px;line-height:1.9">
+This website is a private digital archive documenting cybersecurity incidents,
+misconfigurations, underground research and historical leaks.<br><br>
+
+This project is <b>NOT affiliated with Anonymous</b> or any organization.
+It exists to preserve information, analyze failures and educate future defenders.<br><br>
+
+Data breaches do not begin with hackers — they begin with neglect.
+This archive records the consequences.
+</p>
+</div>
+</section>
+
+<!-- TUTORIALS -->
+<section id="tutorials" class="section">
+<div id="tutorialList"></div>
+</section>
+
+<!-- HACKERTYPER -->
+<section id="hackertyper" class="section">
+<div id="terminal"></div>
+<p class="meta" style="margin-top:10px">type anything…</p>
 </section>
 
 <footer>© 2026 <span style="color:#00ffaa">hackerarchive.github</span></footer>
@@ -90,52 +144,32 @@ x.fillStyle="#00ffaa";x.font=fs+"px monospace";
 drops.forEach((d,i)=>{x.fillText(ch[Math.random()*ch.length|0],i*fs,d*fs);
 if(d*fs>c.height&&Math.random()>.98)drops[i]=0;drops[i]++})},50);
 
-/* DATA */
-const news=[
-{title:"700k Healthcare Records Exposed",date:"2026-01-02",tags:"#databreach #healthcare",
-content:"Misconfigured public servers leaked sensitive patient records. Attackers exploited open cloud storage with no authentication."},
-{title:"Zero-Day Actively Exploited in iOS",date:"2026-01-05",tags:"#zeroday #apple",
-content:"Apple patched two vulnerabilities abused in targeted espionage campaigns."},
-{title:"Infostealer Malware Campaign Expands",date:"2026-01-08",tags:"#malware #infostealer",
-content:"Credential-stealing malware harvested passwords due to missing MFA."}
-];
-
-const blog=[
-{title:"How Hackers Think During Recon",date:"2026-01-03",tags:"#osint #recon",
-content:"Reconnaissance focuses on mapping attack surfaces using DNS, metadata, breached databases and public archives. Defenders must monitor exposure."},
-{title:"Why Misconfiguration Is the #1 Threat",date:"2026-01-06",tags:"#cloud #security",
-content:"Most breaches originate from exposed ports, default passwords and open cloud buckets — not advanced exploits."},
-{title:"Understanding Modern Ransomware",date:"2026-01-09",tags:"#ransomware #analysis",
-content:"Modern ransomware uses double extortion, data leaks and affiliate models."}
-];
+/* DATA – 20 NEWS */
+const news=[...Array(20)].map((_,i)=>({
+title:`Archived Cyber Incident #${i+1}`,
+date:`2026-01-${String(i+1).padStart(2,"0")}`,
+tags:"#databreach #cybersecurity",
+content:"Archived report describing exposed systems, misconfigurations and security failures observed in the wild."
+}));
 
 const tutorials=[
-{title:"Linux Server Hardening Guide",date:"2026-01-01",tags:"#linux #hardening",
-content:"Disable unused services, enforce firewall rules, configure SSH keys, enable logging and automate updates."},
-{title:"JavaScript Security Checklist",date:"2026-01-04",tags:"#javascript #websec",
-content:"Avoid eval(), sanitize input, implement CSP headers, protect against XSS and CSRF."},
-{title:"Ethical Hacking Learning Path",date:"2026-01-07",tags:"#career #hacking",
-content:"Learn networking, Linux, scripting, web security, then practice legally via labs and CTFs."}
+{title:"Linux Hardening",content:"Disable unused services, firewall rules, SSH keys, updates."},
+{title:"OSINT Basics",content:"DNS, metadata, breach analysis, public sources."},
+{title:"Web Security",content:"XSS, CSRF, input validation, CSP."},
+{title:"Cloud Misconfigurations",content:"Open buckets, IAM mistakes, exposed APIs."},
+{title:"CTF Learning Path",content:"Practice legally via labs and challenges."}
 ];
 
-/* FUNCTIONS */
+/* RENDER */
 function render(){
-renderSection(news,"newsGrid");
-renderSection(blog,"blogGrid");
-renderSection(tutorials,"tutorialGrid");
-}
-
-function renderSection(arr,id){
 let q=search.value.toLowerCase();
 let s=sort.value;
-let data=[...arr].filter(e=>
-(e.title+e.content).toLowerCase().includes(q));
-
+let data=[...news].filter(e=>(e.title+e.content).toLowerCase().includes(q));
 if(s==="alpha")data.sort((a,b)=>a.title.localeCompare(b.title));
 if(s==="date")data.sort((a,b)=>b.date.localeCompare(a.date));
 if(s==="tag")data.sort((a,b)=>a.tags.localeCompare(b.tags));
 
-document.getElementById(id).innerHTML=data.map(e=>`
+newsGrid.innerHTML=data.map(e=>`
 <div class="card" onclick="open(e)">
 <h3>${e.title}</h3>
 <div class="meta">${e.date}</div>
@@ -143,24 +177,43 @@ document.getElementById(id).innerHTML=data.map(e=>`
 </div>`).join("");
 }
 
+/* DETAILS */
 function open(e){
-details.classList.add("active");
-dTitle.textContent=e.title;
-dMeta.textContent=e.date+" • "+e.tags;
-dContent.textContent=e.content;
-details.scrollIntoView({behavior:"smooth"});
+const d=document.createElement("div");
+d.className="details active";
+d.innerHTML=`<h2>${e.title}</h2><div class="meta">${e.date} • ${e.tags}</div><p style="margin-top:25px">${e.content}</p>`;
+document.body.appendChild(d);
+d.scrollIntoView({behavior:"smooth"});
 }
 
+/* TUTORIALS */
+tutorialList.innerHTML=tutorials.map(t=>`
+<div class="accordion">
+<h3 onclick="this.nextElementSibling.style.display=
+this.nextElementSibling.style.display==='block'?'none':'block'">
+${t.title}
+</h3>
+<p>${t.content}</p>
+</div>`).join("");
+
+/* NAV */
 function switchTab(id){
 document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));
 event.target.classList.add("active");
-render();
 }
+
+/* HACKERTYPER */
+const fakeCode=`root@archive:~# scanning network...
+ssh brute-force initiated
+bypassing firewall rules
+dumping memory blocks
+access granted
+`;
+document.addEventListener("keydown",()=>terminal.textContent+=fakeCode[Math.random()*fakeCode.length|0]);
 
 render();
 </script>
 </body>
 </html>
-
