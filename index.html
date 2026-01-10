@@ -19,7 +19,7 @@ h1{color:#00ffaa;font-size:3rem}
 .nav button{background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);padding:8px 14px;border-radius:10px;cursor:pointer}
 .nav button.active{background:rgba(0,255,170,.25)}
 
-.searchbar{max-width:600px;margin:30px auto;display:flex;gap:10px}
+.searchbar{max-width:700px;margin:30px auto;display:flex;gap:10px}
 .searchbar input,.searchbar select{flex:1;background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.4);padding:8px;border-radius:8px}
 
 .section{display:none;max-width:1200px;margin:30px auto;padding:0 20px}
@@ -33,9 +33,9 @@ h1{color:#00ffaa;font-size:3rem}
 .accordion h3{cursor:pointer}
 .content{display:none;margin-top:15px;line-height:1.9}
 
-.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none}
+.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none;box-shadow:0 0 15px rgba(0,255,170,.3)}
 
-#terminal{background:black;border:1px solid rgba(0,255,170,.4);border-radius:14px;padding:20px;min-height:400px;white-space:pre-wrap;color:#00ffaa}
+#terminal{background:black;border:1px solid rgba(0,255,170,.4);border-radius:14px;padding:20px;min-height:420px;white-space:pre-wrap;color:#00ffaa}
 
 footer{text-align:center;color:#666;margin:40px}
 </style>
@@ -58,7 +58,7 @@ footer{text-align:center;color:#666;margin:40px}
 </div>
 
 <div class="searchbar">
-<input id="searchInput" placeholder="search by title, tag, content">
+<input id="searchInput" placeholder="search titles, tags, content">
 <select id="sortSelect" onchange="sortItems()">
 <option value="az">A–Z</option>
 <option value="za">Z–A</option>
@@ -71,15 +71,15 @@ footer{text-align:center;color:#666;margin:40px}
 <h3 onclick="toggle(this)">Massive Game Mod Leak</h3>
 <div class="meta">2026 • #mods #leak</div>
 <div class="content">
-Full archive of unreleased mods leaked from private repositories. Includes experimental assets and internal tools.
+A full archive of unreleased mods surfaced on underground forums, including experimental assets and developer-only tools.
 </div>
 </div>
 
 <div class="card accordion">
-<h3 onclick="toggle(this)">Legacy Systems Exploit</h3>
+<h3 onclick="toggle(this)">Legacy Systems Zero-Day</h3>
 <div class="meta">2026 • #exploit #zero-day</div>
 <div class="content">
-Zero-day actively abused against outdated enterprise infrastructure worldwide.
+A zero-day exploit targeting outdated enterprise systems is being actively abused in the wild.
 </div>
 </div>
 </section>
@@ -89,8 +89,10 @@ Zero-day actively abused against outdated enterprise infrastructure worldwide.
 <div class="card">
 <h3>2026 not affiliated by Anonymous</h3>
 <div class="content" style="display:block">
-This is a private archive documenting cybersecurity incidents, underground digital culture, game modding and OSINT.
-NOT affiliated with Anonymous or any organization. Educational & archival only.
+This is a private, independent digital archive documenting cybersecurity incidents, game modding,
+underground digital culture and OSINT research.  
+NOT affiliated with Anonymous or any organization.  
+Educational and archival purposes only.
 </div>
 </div>
 </section>
@@ -98,18 +100,18 @@ NOT affiliated with Anonymous or any organization. Educational & archival only.
 <!-- TUTORIALS -->
 <section id="tutorials" class="section searchable">
 <div class="card accordion">
-<h3 onclick="toggle(this)">Linux Hardening Guide</h3>
+<h3 onclick="toggle(this)">Linux Server Hardening</h3>
 <div class="tags">#linux #security</div>
 <div class="content">
-Disable root login, SSH keys only, firewall, auditd, automatic updates, IDS systems.
+Disable root login, use SSH keys only, configure firewall, enable auditd, IDS, automatic updates and log monitoring.
 </div>
 </div>
 
 <div class="card accordion">
-<h3 onclick="toggle(this)">Web Pentest Basics</h3>
+<h3 onclick="toggle(this)">Web Security Basics</h3>
 <div class="tags">#web #xss #sql</div>
 <div class="content">
-Input validation, CSP headers, session security, SQL injection prevention.
+Input validation, CSP headers, secure cookies, CSRF protection and proper authentication flows.
 </div>
 </div>
 </section>
@@ -119,10 +121,19 @@ Input validation, CSP headers, session security, SQL injection prevention.
 <div class="card accordion">
 <h3 onclick="toggle(this)">CS 1.6</h3>
 <div class="content">
+
 <h3>AK47 GALAXY PAINT</h3>
 <div class="tags">#cs16 #ak47 #skin</div>
-<p>Custom AK-47 Galaxy Paint skin for Counter-Strike 1.6</p>
+<p>Custom AK-47 Galaxy Paint skin for Counter-Strike 1.6.</p>
 <a href="ak47-galaxy-paint.rar" download class="download">DOWNLOAD</a>
+
+<hr style="margin:30px 0;border:0;border-top:1px solid rgba(0,255,170,.3)">
+
+<h3>M4A1 PREPPY CAMO</h3>
+<div class="tags">#cs16 #m4a1 #skin #camo</div>
+<p>Custom M4A1 Preppy Camo skin for Counter-Strike 1.6.</p>
+<a href="m4a1_preppycamo.rar" download class="download">DOWNLOAD</a>
+
 </div>
 </div>
 </section>
@@ -166,7 +177,7 @@ c.style.display=c.style.display==="block"?"none":"block";
 }
 
 /* SEARCH */
-document.getElementById("searchInput").addEventListener("input",()=>{
+searchInput.addEventListener("input",()=>{
 const q=searchInput.value.toLowerCase();
 document.querySelectorAll(".searchable .card").forEach(c=>{
 c.style.display=c.innerText.toLowerCase().includes(q)?"block":"none";
@@ -187,10 +198,9 @@ cards.forEach(c=>sec.appendChild(c));
 }
 
 /* HACKERTYPER */
-document.addEventListener("keydown",e=>{
+document.addEventListener("keydown",()=>{
 if(!document.getElementById("terminal").parentElement.classList.contains("active"))return;
-document.getElementById("terminal").innerText+=
-"sudo exploit --target legacy_system --force\n";
+terminal.innerText+="sudo exploit --target legacy_system --force\n";
 });
 </script>
 </body>
