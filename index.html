@@ -33,14 +33,13 @@ h1{color:#00ffaa;font-size:3rem}
 .accordion h3{cursor:pointer}
 .content{display:none;margin-top:15px;line-height:1.9}
 
-.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none}
+.download{display:inline-block;margin-top:15px;padding:10px 20px;border:1px solid rgba(0,255,170,.6);border-radius:10px;color:#00ffaa;text-decoration:none;box-shadow:0 0 15px rgba(0,255,170,.3)}
 
-.calc input, .calc select{
+.calc input,.calc select{
 width:100%;margin:6px 0;padding:8px;
 background:black;color:#00ffaa;
 border:1px solid rgba(0,255,170,.4);border-radius:8px
 }
-
 .calc button{
 margin-top:10px;padding:8px 14px;
 background:black;color:#00ffaa;
@@ -72,6 +71,7 @@ footer{text-align:center;color:#666;margin:40px}
 <button onclick="switchTab('terminal')">[hackertyper@archive]$</button>
 <button onclick="switchTab('games')">GAMES</button>
 <button onclick="switchTab('calc')">CALCULATOR</button>
+<button onclick="switchTab('search')">SEARCH</button>
 </div>
 </div>
 
@@ -145,22 +145,40 @@ SSH keys only, firewall, auditd, IDS, logs.
 </select>
 
 <button onclick="convert()">CONVERT</button>
-
-<p id="calcResult" style="margin-top:15px;line-height:1.8"></p>
+<p id="calcResult" style="margin-top:15px"></p>
 
 <hr style="margin:20px 0">
 
 <input id="a" placeholder="A">
 <select id="op">
-<option>+</option>
-<option>-</option>
-<option>*</option>
-<option>/</option>
+<option>+</option><option>-</option><option>*</option><option>/</option>
 </select>
 <input id="b" placeholder="B">
 
 <button onclick="math()">CALCULATE</button>
 <p id="mathResult"></p>
+</div>
+</section>
+
+<!-- SEARCH -->
+<section id="search" class="section">
+<div class="card">
+<h3>Hacker Search Engine</h3>
+<p style="color:#7dddc1;margin-bottom:15px">
+Direct Google / Chrome search – hacker styled interface
+</p>
+
+<form action="https://www.google.com/search" method="GET" target="_blank">
+<input name="q" placeholder="search the web..." style="width:100%;padding:12px;background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.6);border-radius:10px;margin-bottom:12px">
+<input type="hidden" name="safe" value="off">
+<button type="submit" style="padding:10px 20px;background:black;color:#00ffaa;border:1px solid rgba(0,255,170,.6);border-radius:10px;cursor:pointer">
+SEARCH
+</button>
+</form>
+
+<p style="margin-top:15px;font-size:.75rem;color:#666">
+results open in new tab • powered by Google
+</p>
 </div>
 </section>
 
@@ -202,7 +220,7 @@ const c=el.nextElementSibling;
 c.style.display=c.style.display==="block"?"none":"block";
 }
 
-/* SEARCH */
+/* SEARCH (LOCAL) */
 searchInput.addEventListener("input",()=>{
 const q=searchInput.value.toLowerCase();
 document.querySelectorAll(".searchable .card").forEach(c=>{
@@ -223,7 +241,7 @@ if(!sec)return;
 
 /* CALCULATOR */
 function convert(){
-const n=document.getElementById("numInput").value;
+const n=numInput.value;
 const b=parseInt(baseSelect.value);
 const v=parseInt(n,b);
 calcResult.innerHTML=
@@ -232,7 +250,6 @@ calcResult.innerHTML=
 "<br>BIN: "+v.toString(2)+
 "<br>OCT: "+v.toString(8);
 }
-
 function math(){
 const A=parseFloat(a.value),B=parseFloat(b.value);
 let r;
