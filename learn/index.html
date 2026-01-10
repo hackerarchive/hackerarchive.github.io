@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HackerHub</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Courier New', monospace;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #0f2027, #000000 70%);
+      color: #00ff9c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 420px;
+      padding: 32px 24px 24px;
+      background: rgba(0, 0, 0, 0.65);
+      border: 1px solid #00ff9c44;
+      border-radius: 16px;
+      box-shadow: 0 0 30px #00ff9c22;
+      text-align: center;
+    }
+
+    .logo {
+      font-size: 32px;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+      text-shadow: 0 0 12px #00ff9c;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: #00ff9caa;
+      margin-bottom: 28px;
+    }
+
+    .link {
+      display: block;
+      padding: 16px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      border: 1px solid #00ff9c66;
+      color: #00ff9c;
+      text-decoration: none;
+      font-size: 18px;
+      background: linear-gradient(145deg, #001a12, #000);
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, transparent, #00ff9c55, transparent);
+      transition: left 0.4s ease;
+    }
+
+    .link:hover::before {
+      left: 100%;
+    }
+
+    .link:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 0 18px #00ff9c55;
+    }
+
+    footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: #00ff9c77;
+    }
+
+    footer span {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: #00ff9c55;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">HACKERHUB</div>
+    <div class="subtitle">hackerarchive.github.io</div>
+
+    <a class="link" href="https://hackerarchive.github.io/learn/python" target="_blank">LEARN PYTHON</a>
+    <a class="link" href="https://hackerarchive.github.io/learn/cpp" target="_blank">LEARN C++</a>
+
+    <footer>
+      © 2026 Gabriel Krup
+      <span>hackerarchive.github</span>
+    </footer>
+  </div>
+</body>
+</html>
