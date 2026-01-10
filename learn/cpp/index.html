@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>HackerArchive – Nauka C++</title>
+  <title>HackerArchive – Learn C++</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -36,25 +36,24 @@
 </head>
 <body>
   <div class="container">
-    <h1>HackerArchive – Kompletny tekst do nauki C++</h1>
+    <h1>HackerArchive – One Long Text to Learn C++</h1>
 
     <p>
-      Ten dokument jest jednym, długim tekstem przeznaczonym do nauki języka C++ –
-      od absolutnych podstaw aż po bardziej zaawansowane koncepcje. Czytaj go
-      liniowo, jak książkę. C++ jest językiem niskopoziomowym, szybkim i potężnym,
-      używanym w systemach operacyjnych, silnikach gier, oprogramowaniu embedded
-      i aplikacjach wysokiej wydajności.
+      This page is a single, long-form text designed to teach you the C++ programming
+      language from absolute basics to more advanced concepts. Read it linearly,
+      like a book. C++ is a low-level, fast, and powerful language used in operating
+      systems, game engines, embedded systems, and high-performance applications.
     </p>
 
-    <h2>1. Czym jest C++</h2>
+    <h2>1. What is C++</h2>
     <p>
-      C++ to język kompilowany, co oznacza, że kod źródłowy musi zostać przetworzony
-      przez kompilator (np. GCC, Clang, MSVC) do kodu maszynowego. Programy w C++ są
-      bardzo szybkie, ale wymagają od programisty odpowiedzialności za pamięć.
+      C++ is a compiled language, which means the source code must be processed
+      by a compiler (such as GCC, Clang, or MSVC) into machine code. C++ programs
+      are extremely fast, but they require the programmer to manage memory carefully.
     </p>
 
-    <h2>2. Pierwszy program</h2>
-    <p>Klasyczny program <code>Hello World</code> wygląda następująco:</p>
+    <h2>2. Your First Program</h2>
+    <p>The classic <code>Hello World</code> program looks like this:</p>
     <pre>
 #include <iostream>
 
@@ -65,14 +64,14 @@ int main() {
     </pre>
 
     <p>
-      Funkcja <code>main</code> jest punktem wejścia programu. <code>#include</code>
-      dołącza bibliotekę, a <code>std::cout</code> służy do wypisywania tekstu.
+      The <code>main</code> function is the entry point of the program. The
+      <code>#include</code> directive imports a library, and <code>std::cout</code>
+      is used to print text to the console.
     </p>
 
-    <h2>3. Zmienne i typy danych</h2>
+    <h2>3. Variables and Data Types</h2>
     <p>
-      C++ jest językiem statycznie typowanym. Oznacza to, że każda zmienna ma
-      określony typ:
+      C++ is a statically typed language, meaning every variable has a specific type:
     </p>
     <pre>
 int a = 10;
@@ -82,25 +81,25 @@ bool isTrue = true;
     </pre>
 
     <p>
-      Typy podstawowe to m.in. <code>int</code>, <code>float</code>, <code>double</code>,
-      <code>char</code> i <code>bool</code>.
+      Common primitive types include <code>int</code>, <code>float</code>,
+      <code>double</code>, <code>char</code>, and <code>bool</code>.
     </p>
 
-    <h2>4. Instrukcje warunkowe</h2>
+    <h2>4. Conditional Statements</h2>
     <p>
-      Warunki pozwalają podejmować decyzje w kodzie:
+      Conditions allow your program to make decisions:
     </p>
     <pre>
 if (a > 5) {
-    std::cout << "a jest większe niż 5";
+    std::cout << "a is greater than 5";
 } else {
-    std::cout << "a jest mniejsze lub równe 5";
+    std::cout << "a is less than or equal to 5";
 }
     </pre>
 
-    <h2>5. Pętle</h2>
+    <h2>5. Loops</h2>
     <p>
-      Pętle służą do wielokrotnego wykonywania kodu:
+      Loops are used to repeat code execution:
     </p>
     <pre>
 for (int i = 0; i < 10; i++) {
@@ -112,9 +111,9 @@ while (a > 0) {
 }
     </pre>
 
-    <h2>6. Funkcje</h2>
+    <h2>6. Functions</h2>
     <p>
-      Funkcje pozwalają dzielić program na mniejsze części:
+      Functions allow you to split your program into reusable blocks:
     </p>
     <pre>
 int add(int x, int y) {
@@ -122,10 +121,10 @@ int add(int x, int y) {
 }
     </pre>
 
-    <h2>7. Wskaźniki i pamięć</h2>
+    <h2>7. Pointers and Memory</h2>
     <p>
-      Jedną z najważniejszych (i najtrudniejszych) części C++ są wskaźniki. Wskaźnik
-      przechowuje adres w pamięci:
+      One of the most important (and difficult) parts of C++ is understanding
+      pointers. A pointer stores a memory address:
     </p>
     <pre>
 int x = 5;
@@ -133,13 +132,13 @@ int* ptr = &x;
     </pre>
 
     <p>
-      Nieprawidłowe użycie pamięci może prowadzić do błędów krytycznych, dlatego
-      C++ wymaga ostrożności.
+      Incorrect memory usage can lead to crashes and vulnerabilities, which is
+      why C++ requires discipline and precision.
     </p>
 
-    <h2>8. Programowanie obiektowe</h2>
+    <h2>8. Object-Oriented Programming</h2>
     <p>
-      C++ obsługuje klasy i obiekty:
+      C++ supports classes and objects:
     </p>
     <pre>
 class Person {
@@ -148,22 +147,23 @@ public:
     int age;
 
     void sayHello() {
-        std::cout << "Cześć, mam na imię " << name;
+        std::cout << "Hi, my name is " << name;
     }
 };
     </pre>
 
-    <h2>9. Standardowa biblioteka</h2>
+    <h2>9. The Standard Library</h2>
     <p>
-      STL (Standard Template Library) oferuje kontenery (<code>vector</code>,
-      <code>map</code>), algorytmy i narzędzia, które znacząco ułatwiają pisanie kodu.
+      The STL (Standard Template Library) provides containers such as
+      <code>vector</code> and <code>map</code>, along with algorithms and utilities
+      that make development faster and safer.
     </p>
 
-    <h2>10. Zakończenie</h2>
+    <h2>10. Final Words</h2>
     <p>
-      C++ to język trudny, ale niezwykle potężny. Nauka wymaga czasu, praktyki
-      i zrozumienia tego, co dzieje się „pod spodem”. Jeśli opanujesz C++,
-      zrozumiesz też, jak działa większość innych języków.
+      C++ is a difficult language, but also one of the most powerful. Learning it
+      takes time, practice, and a deep understanding of how computers work under
+      the hood. If you master C++, many other languages will become easier to learn.
     </p>
 
     <p>
