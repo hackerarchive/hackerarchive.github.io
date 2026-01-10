@@ -1,1 +1,174 @@
-<h1>WEBSITE IS STILL IN OUR LAB!</h1>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <title>HackerArchive – Nauka C++</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      background: #0b0f14;
+      color: #e6e6e6;
+      font-family: Consolas, Monaco, monospace;
+      line-height: 1.7;
+      margin: 0;
+      padding: 40px;
+    }
+    h1, h2, h3 {
+      color: #7dd3fc;
+    }
+    code {
+      background: #111827;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #a7f3d0;
+    }
+    pre {
+      background: #020617;
+      padding: 16px;
+      overflow-x: auto;
+      border-left: 4px solid #38bdf8;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HackerArchive – Kompletny tekst do nauki C++</h1>
+
+    <p>
+      Ten dokument jest jednym, długim tekstem przeznaczonym do nauki języka C++ –
+      od absolutnych podstaw aż po bardziej zaawansowane koncepcje. Czytaj go
+      liniowo, jak książkę. C++ jest językiem niskopoziomowym, szybkim i potężnym,
+      używanym w systemach operacyjnych, silnikach gier, oprogramowaniu embedded
+      i aplikacjach wysokiej wydajności.
+    </p>
+
+    <h2>1. Czym jest C++</h2>
+    <p>
+      C++ to język kompilowany, co oznacza, że kod źródłowy musi zostać przetworzony
+      przez kompilator (np. GCC, Clang, MSVC) do kodu maszynowego. Programy w C++ są
+      bardzo szybkie, ale wymagają od programisty odpowiedzialności za pamięć.
+    </p>
+
+    <h2>2. Pierwszy program</h2>
+    <p>Klasyczny program <code>Hello World</code> wygląda następująco:</p>
+    <pre>
+#include <iostream>
+
+int main() {
+    std::cout << "Hello, world!" << std::endl;
+    return 0;
+}
+    </pre>
+
+    <p>
+      Funkcja <code>main</code> jest punktem wejścia programu. <code>#include</code>
+      dołącza bibliotekę, a <code>std::cout</code> służy do wypisywania tekstu.
+    </p>
+
+    <h2>3. Zmienne i typy danych</h2>
+    <p>
+      C++ jest językiem statycznie typowanym. Oznacza to, że każda zmienna ma
+      określony typ:
+    </p>
+    <pre>
+int a = 10;
+double b = 3.14;
+char c = 'A';
+bool isTrue = true;
+    </pre>
+
+    <p>
+      Typy podstawowe to m.in. <code>int</code>, <code>float</code>, <code>double</code>,
+      <code>char</code> i <code>bool</code>.
+    </p>
+
+    <h2>4. Instrukcje warunkowe</h2>
+    <p>
+      Warunki pozwalają podejmować decyzje w kodzie:
+    </p>
+    <pre>
+if (a > 5) {
+    std::cout << "a jest większe niż 5";
+} else {
+    std::cout << "a jest mniejsze lub równe 5";
+}
+    </pre>
+
+    <h2>5. Pętle</h2>
+    <p>
+      Pętle służą do wielokrotnego wykonywania kodu:
+    </p>
+    <pre>
+for (int i = 0; i < 10; i++) {
+    std::cout << i << std::endl;
+}
+
+while (a > 0) {
+    a--;
+}
+    </pre>
+
+    <h2>6. Funkcje</h2>
+    <p>
+      Funkcje pozwalają dzielić program na mniejsze części:
+    </p>
+    <pre>
+int add(int x, int y) {
+    return x + y;
+}
+    </pre>
+
+    <h2>7. Wskaźniki i pamięć</h2>
+    <p>
+      Jedną z najważniejszych (i najtrudniejszych) części C++ są wskaźniki. Wskaźnik
+      przechowuje adres w pamięci:
+    </p>
+    <pre>
+int x = 5;
+int* ptr = &x;
+    </pre>
+
+    <p>
+      Nieprawidłowe użycie pamięci może prowadzić do błędów krytycznych, dlatego
+      C++ wymaga ostrożności.
+    </p>
+
+    <h2>8. Programowanie obiektowe</h2>
+    <p>
+      C++ obsługuje klasy i obiekty:
+    </p>
+    <pre>
+class Person {
+public:
+    std::string name;
+    int age;
+
+    void sayHello() {
+        std::cout << "Cześć, mam na imię " << name;
+    }
+};
+    </pre>
+
+    <h2>9. Standardowa biblioteka</h2>
+    <p>
+      STL (Standard Template Library) oferuje kontenery (<code>vector</code>,
+      <code>map</code>), algorytmy i narzędzia, które znacząco ułatwiają pisanie kodu.
+    </p>
+
+    <h2>10. Zakończenie</h2>
+    <p>
+      C++ to język trudny, ale niezwykle potężny. Nauka wymaga czasu, praktyki
+      i zrozumienia tego, co dzieje się „pod spodem”. Jeśli opanujesz C++,
+      zrozumiesz też, jak działa większość innych języków.
+    </p>
+
+    <p>
+      — HackerArchive
+    </p>
+  </div>
+</body>
+</html>
