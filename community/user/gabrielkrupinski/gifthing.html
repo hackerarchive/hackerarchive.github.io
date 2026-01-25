@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<title>hackerarchive.github</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+    margin:0;
+    background:#0a0a0a;
+    color:#00ffcc;
+    font-family:Arial, sans-serif;
+    text-align:center;
+}
+h1{
+    font-size:4rem;
+    margin:30px 0;
+    text-shadow:0 0 20px #00ffcc;
+}
+input{
+    padding:12px;
+    width:60%;
+    max-width:500px;
+    font-size:18px;
+    border-radius:10px;
+    border:none;
+}
+button{
+    padding:12px 18px;
+    margin-left:10px;
+    font-size:16px;
+    border:none;
+    border-radius:10px;
+    cursor:pointer;
+    background:#00ffcc;
+    color:#000;
+    font-weight:bold;
+}
+#gifs{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+    gap:25px;
+    padding:40px;
+}
+iframe{
+    width:100%;
+    height:300px;
+    border-radius:12px;
+    border:none;
+    box-shadow:0 0 15px rgba(0,255,204,0.3);
+}
+footer{
+    padding:30px;
+    background:#000;
+}
+.discord{
+    display:inline-flex;
+    align-items:center;
+    gap:12px;
+    background:#5865F2;
+    padding:14px 24px;
+    border-radius:14px;
+    color:#fff;
+    font-size:22px;
+    text-decoration:none;
+    box-shadow:0 0 20px #5865F2;
+}
+.discord img{
+    width:45px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>hackerarchive.github</h1>
+
+<div>
+    <input id="q" placeholder="Szukaj GIFów (tenor)..." />
+    <button onclick="search()">Szukaj</button>
+    <button onclick="bookmark()">⭐ Zakładka</button>
+</div>
+
+<div id="gifs"></div>
+
+<footer>
+    <a class="discord" href="https://discord.gg/3WH5aN2Xvg" target="_blank">
+        <img src="https://media.tenor.com/6zZ3o6oZP6IAAAAi/discord-logo.gif">
+        Discord
+    </a>
+</footer>
+
+<script>
+function search(){
+    const q = document.getElementById("q").value;
+    const gifs = document.getElementById("gifs");
+    gifs.innerHTML = "";
+
+    for(let i=0;i<9;i++){
+        const iframe = document.createElement("iframe");
+        iframe.src = "https://tenor.com/embed?search=" + encodeURIComponent(q) + "&theme=dark";
+        gifs.appendChild(iframe);
+    }
+}
+
+function bookmark(){
+    alert("Dodaj stronę do zakładek: CTRL + D");
+}
+</script>
+
+</body>
+</html>
