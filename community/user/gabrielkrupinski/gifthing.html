@@ -11,50 +11,42 @@ body{
     background:#050505;
     color:#00ff99;
     font-family:Arial, sans-serif;
-    text-align:center;
 }
 h1{
+    text-align:center;
     font-size:4rem;
-    margin:30px;
+    margin:30px 0;
     text-shadow:0 0 20px #00ff99;
 }
-input{
-    padding:14px;
-    width:60%;
-    max-width:500px;
-    font-size:18px;
-    border-radius:10px;
-    border:none;
+nav{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-bottom:30px;
 }
-button{
-    padding:14px 20px;
-    font-size:16px;
-    border:none;
-    border-radius:10px;
+nav button{
     background:#00ff99;
+    border:none;
+    padding:12px 20px;
+    border-radius:10px;
     font-weight:bold;
     cursor:pointer;
 }
 .grid{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
-    gap:25px;
-    padding:40px;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:20px;
+    padding:30px;
 }
-.card{
-    background:#0b0b0b;
-    border-radius:14px;
-    padding:20px;
-    box-shadow:0 0 15px rgba(0,255,153,0.3);
-}
-a{
-    color:#00ff99;
-    text-decoration:none;
-    font-size:18px;
+.card img{
+    width:100%;
+    border-radius:12px;
+    box-shadow:0 0 15px rgba(0,255,153,0.4);
 }
 footer{
     background:#000;
     padding:30px;
+    text-align:center;
 }
 .discord{
     display:inline-flex;
@@ -65,6 +57,7 @@ footer{
     border-radius:14px;
     color:white;
     font-size:22px;
+    text-decoration:none;
 }
 .discord img{width:40px;}
 </style>
@@ -74,12 +67,14 @@ footer{
 
 <h1>hackerarchive.github</h1>
 
-<div>
-    <input id="q" placeholder="Szukaj GIFów (Tenor)" />
-    <button onclick="search()">Szukaj</button>
-</div>
+<nav>
+    <button onclick="show('all')">Główna</button>
+    <button onclick="show('hacker')">Hacker</button>
+    <button onclick="show('funny')">Funny</button>
+    <button onclick="show('anime')">Anime</button>
+</nav>
 
-<div class="grid" id="results"></div>
+<div class="grid" id="gallery"></div>
 
 <footer>
     <a class="discord" href="https://discord.gg/3WH5aN2Xvg" target="_blank">
@@ -89,24 +84,30 @@ footer{
 </footer>
 
 <script>
-function search(){
-    const q = document.getElementById("q").value;
-    const res = document.getElementById("results");
-    res.innerHTML = "";
+const gifs = [
+    {cat:"hacker", url:"https://media.tenor.com/2V9Z0g7XKxYAAAAC/hacker.gif"},
+    {cat:"hacker", url:"https://media.tenor.com/9l7w7Dnk0j0AAAAC/hacking.gif"},
+    {cat:"funny",  url:"https://media.tenor.com/8G7n1N3H0t8AAAAC/funny.gif"},
+    {cat:"funny",  url:"https://media.tenor.com/4K8k2vZQ1xMAAAAC/lol.gif"},
+    {cat:"anime",  url:"https://media.tenor.com/Z8sY0nZJQ6IAAAAC/anime.gif"},
+    {cat:"anime",  url:"https://media.tenor.com/6ZKz9Z7hZKkAAAAC/anime-girl.gif"}
+];
 
-    for(let i=0;i<12;i++){
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-            <p>${q}</p>
-            <a href="https://tenor.com/search/${encodeURIComponent(q)}-gifs" target="_blank">
-                🔗 Otwórz GIFy na Tenor
-            </a><br><br>
-            <small>Pobieranie i kopiowanie linku działa na Tenor</small>
-        `;
-        res.appendChild(card);
-    }
+function show(category){
+    const g = document.getElementById("gallery");
+    g.innerHTML = "";
+    gifs
+      .filter(x => category==="all" || x.cat===category)
+      .forEach(x=>{
+        const d=document.createElement("div");
+        d.className="card";
+        d.innerHTML=`<a href="${x.url}" target="_blank">
+                        <img src="${x.url}">
+                     </a>`;
+        g.appendChild(d);
+      });
 }
+show("all");
 </script>
 
 </body>
