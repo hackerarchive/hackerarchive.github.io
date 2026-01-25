@@ -92,6 +92,24 @@ nav button{
     background:#fff;
     color:#000;
 }
+.pagination{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:20px 0 40px 0;
+}
+.pagination button{
+    padding:8px 12px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-weight:bold;
+    background:#00ff99;
+    color:#000;
+}
+.pagination button.active{
+    background:#fff;
+}
 footer{
     background:#000;
     padding:30px;
@@ -117,18 +135,20 @@ footer{
 <h1>hackerarchive.github</h1>
 
 <nav>
-    <button onclick="loadCategory('all')">Główna</button>
-    <button onclick="loadCategory('hacker')">Hacker</button>
-    <button onclick="loadCategory('funny')">Funny</button>
-    <button onclick="loadCategory('anime')">Anime</button>
+    <button onclick="setMode('all')">Główna</button>
+    <button onclick="setMode('hacker')">Hacker</button>
+    <button onclick="setMode('funny')">Funny</button>
+    <button onclick="setMode('anime')">Anime</button>
 </nav>
 
 <div id="search">
     <input id="q" placeholder="Szukaj GIFów..." />
-    <button onclick="searchGifs()">Szukaj</button>
+    <button onclick="startSearch()">Szukaj</button>
 </div>
 
 <div class="grid" id="gallery"></div>
+
+<div class="pagination" id="pagination"></div>
 
 <footer>
     <a class="discord" href="https://discord.gg/3WH5aN2Xvg" target="_blank">
@@ -138,8 +158,12 @@ footer{
 </footer>
 
 <script>
-const GIPHY_KEY = "95iavQqU1caVhRiO4u7e5o5IU3vVLmxx"; // <-- tu wklej swój klucz
-const gallery = document.getElementById("gallery");
+const GIPHY_KEY = "TU_WKLEJ_SWÓJ_KLUCZ"; // <-- Twój klucz
+const limit = 24; // ile gifów na stronę
+
+let mode = "all";
+let query = "";
+let page = 1;
 
 const categories = {
     all: "random",
@@ -148,16 +172,18 @@ const categories = {
     anime: "anime"
 };
 
-async function fetchGifs(query){
-    const url = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_KEY}&q=${encodeURIComponent(query)}&limit=24&rating=pg-13`;
+async function fetchGifs(q, offset){
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_KEY}&q=${encodeURIComponent(q)}&limit=${limit}&offset=${offset}&rating=pg-13`;
     const res = await fetch(url);
     const data = await res.json();
-    return data.data;
+    return data;
 }
 
-function renderGifs(gifs){
+function renderGifs(data){
+    const gallery = document.getElementById("gallery");
     gallery.innerHTML = "";
-    gifs.forEach(g => {
+
+    data.data.forEach(g => {
         const img = g.images.fixed_height.url;
         const page = g.url;
 
@@ -172,19 +198,48 @@ function renderGifs(gifs){
         `;
         gallery.appendChild(card);
     });
+
+    renderPagination(data.pagination.total_count);
 }
 
-async function loadCategory(cat){
-    const query = categories[cat];
-    const gifs = await fetchGifs(query);
-    renderGifs(gifs);
+function renderPagination(total){
+    const pagination = document.getElementById("pagination");
+    pagination.innerHTML = "";
+
+    const pages = Math.min(10, Math.ceil(total / limit)); // max 10 stron
+
+    for(let i=1;i<=pages;i++){
+        const btn = document.createElement("button");
+        btn.innerText = i;
+        btn.className = (i === page) ? "active" : "";
+        btn.onclick = () => {
+            page = i;
+            load();
+        };
+        pagination.appendChild(btn);
+    }
 }
 
-async function searchGifs(){
-    const q = document.getElementById("q").value;
-    if(!q) return;
-    const gifs = await fetchGifs(q);
-    renderGifs(gifs);
+async function load(){
+    const q = query || categories[mode];
+    const offset = (page - 1) * limit;
+    const data = await fetchGifs(q, offset);
+    renderGifs(data);
+}
+
+function setMode(m){
+    mode = m;
+    query = "";
+    page = 1;
+    document.getElementById("q").value = "";
+    load();
+}
+
+function startSearch(){
+    query = document.getElementById("q").value;
+    mode = "search";
+    page = 1;
+    load();
 }
 
 function copyLink(url){
@@ -201,7 +256,7 @@ function downloadGif(url){
     a.remove();
 }
 
-loadCategory("all");
+load();
 </script>
 
 </body>
