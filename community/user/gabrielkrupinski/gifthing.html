@@ -159,11 +159,11 @@ footer{
 
 <script>
 const GIPHY_KEY = "95iavQqU1caVhRiO4u7e5o5IU3vVLmxx"; // <-- Twój klucz
-const limit = 999999999; // ile gifów na stronę
+const limit = 910; // ile gifów na stronę
 
 let mode = "all";
 let query = "";
-let page = 1;
+let page = 100;
 
 const categories = {
     all: "random",
@@ -244,7 +244,7 @@ function startSearch(){
 
 function copyLink(url){
     navigator.clipboard.writeText(url);
-    alert("Skopiowano link!");
+    alert("Skopiowano link! NAPLET :D");
 }
 
 function downloadGif(url){
