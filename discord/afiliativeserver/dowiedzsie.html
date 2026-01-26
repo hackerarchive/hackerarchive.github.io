@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Afiliative Serwers</title>
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #11162a;
+      --accent: #7c7cff;
+      --accent2: #4fd1c5;
+      --text: #e6e8ff;
+      --muted: #a0a4ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(1200px 600px at 10% -10%, #1a1f3a, transparent),
+                  radial-gradient(800px 400px at 90% 10%, #10243a, transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 50px 20px 30px;
+      text-align: center;
+    }
+
+    .top-counter {
+      margin-bottom: 25px;
+      animation: fadeDown 1.2s ease;
+    }
+
+    .counter-number {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 25px rgba(124,124,255,0.4);
+    }
+
+    .counter-label {
+      color: var(--muted);
+      font-size: 1.1rem;
+      margin-top: 5px;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin: 10px 0 0;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    header p {
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="top-counter">
+      <div class="counter-number" id="serverCounter">128</div>
+      <div class="counter-label">Zarejestrowanych serwerów afiliacyjnych</div>
+    </div>
+    <h1>Afiliative Serwers</h1>
+    <p>Serwer afiliacji dla Twojej strony i społeczności Discord</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>O co chodzi?</h2>
+      <p>
+        Afiliative Serwers to projekt zrzeszający <b>afiliacyjne serwery Discord</b>.
+        Współpracujemy, promujemy się nawzajem i budujemy realne możliwości
+        zarabiania w oparciu o afiliację.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Zarabianie</h2>
+      <p>
+        Dzięki systemowi afiliacyjnemu możesz <b>zarabiać od 300 zł wzwyż</b>.
+        Wszystko zależy od Twojego zaangażowania, jakości serwera i aktywności
+        społeczności.
+      </p>
+      <div class="highlight">300 zł +</div>
+    </section>
+
+    <section class="card servers">
+      <h2>Zarejestrowane serwery</h2>
+      <div class="highlight"><span class="server-count"></span></div>
+      <p>
+        Tyle serwerów Discord jest już częścią naszej afiliacyjnej sieci.
+        Dołącz i rozwijaj się razem z nami.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Dlaczego warto?</h2>
+      <p>
+        ✔ Wspólna promocja serwerów<br />
+        ✔ Realne możliwości zarobku<br />
+        ✔ Polski projekt Discord<br />
+        ✔ Prosty system afiliacji
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    © <span>Afiliative Serwers</span> — Afiliacyjne serwery Discord. Wszelkie prawa zastrzeżone.<br />
+    Projekt: hackerarchive.github
+  </footer>
+
+  <script>
+    /* ===== EDYTUJ TUTAJ ===== */
+    const targetServers = 3938; // <- TU ZMIENIASZ LICZBĘ SERWERÓW
+
+    const counter = document.getElementById('serverCounter');
+    let current = 0;
+    const speed = 25;
+
+    const animateCounter = () => {
+      if (current < targetServers) {
+        current++;
+        counter.textContent = current;
+        setTimeout(animateCounter, speed);
+      }
+    };
+
+    animateCounter();
+  </script>
+</body>
+</html>
